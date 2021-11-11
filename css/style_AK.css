@@ -1,0 +1,99 @@
+body {
+    background-color: #19164F;
+}
+#content {
+    padding: 0 1vw 4vh 1vw;
+}
+#sidebar {
+    background-color: #17144B;
+    border-radius: 40px;
+    padding: 1%;
+    padding-top: 1%;
+}
+#sidebar_content {
+    background-color: #19164F; 
+    border-radius: 40px;
+    padding: 5%;
+    padding-top: 1%;
+}
+#home_button {
+    margin-bottom: 1vh;
+}
+#home_button a {
+    color: white;
+    font-size: 25px;
+}
+#other_pages {
+    margin-bottom: 2vh;
+}
+#other_pages a {
+    padding-left: 15%;
+    line-height: 200%;
+    font-size: 15px;
+}
+#about_us {
+    text-align: center;
+}
+#about_us a {
+    border-radius: 40px;
+    padding: 4%;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-image: url("../resources/Homepage/main_nav/others/aboutus.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: inline-block;
+}
+#category {
+    font-size: 11px;
+    margin-top: 3vh;
+    padding: 5.5%;
+    background-color: #19164F; 
+    border-radius: 40px;
+}
+#category img {
+    width: 30px;
+    height: 30px
+}
+.sticky {
+    width: 23vw; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+}
+a, p {
+    color: white;
+    text-decoration: none;
+}
+#mainpanel {
+    background-color: #17144B;
+    border-radius: 40px;
+    padding: 1.5%; 
+    padding-top: 1%;
+}
+#search_bar {
+    display: inline-block;
+}
+#search_bar input {
+    height: 100%;
+    border-radius: 8px;
+    border: 0px;
+    background-color: #231B6B;
+    color: white;
+}
+#search_bar a{
+    border-radius: 8px;
+}
+#user_buttons {
+    display: inline-block;
+}
+#main_content {
+    border: 5px solid red;
+}
+#c {
+    border: 5px solid orangered;
+    padding: 2%;
+}
