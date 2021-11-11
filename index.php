@@ -3,9 +3,9 @@
         <title>9amingHats | Trang chủ</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
         <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
         <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
+        <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
         <link rel="stylesheet" href="css/style_AK.css">
         <script type="text/javascript">
             function ResizeWidth() {
