@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>9amingHats | Trang chủ</title>
+        <title>9amingHats | Trang chủ | cac</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
