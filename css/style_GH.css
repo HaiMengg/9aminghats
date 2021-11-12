@@ -139,7 +139,7 @@ body {
     text-decoration: none;
 }
 .carousel-item {
-    transition: 0.1s;
+    transition: 0.25s;
 }
 #image-bottom {
     margin: 0;
