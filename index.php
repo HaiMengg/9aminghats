@@ -49,7 +49,7 @@
                                     <a href="#"><b>Điều khoản và Dịch vụ</b></a>
                                 </div>
                                 <div id="about_us">
-                                    <a href="#"><b>Về chúng tôi</b></a>
+                                    <a href="AboutUs.html"><b>Về chúng tôi</b></a>
                                 </div>
                             </div>
                             <div id="category">
