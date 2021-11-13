@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
-        <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
         <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
+        <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
         <link rel="stylesheet" href="css/style_AK.css">
         <script type="text/javascript">
             function ResizeWidth() {
@@ -23,6 +23,8 @@
         <?php include "php/php_functions.php"; 
             $conn = ConnectDB();
         ?>
+        <!--Using custom JS script-->
+        <script src="js/js_function_AK.js"></script>
 
         <div class="container-fluid">
             <div class="row">
@@ -109,15 +111,20 @@
                     <div class="row" id="main_content">
                         <p>
                             <?php
-                                $getGamesDate = FetchFromDB($conn, "SELECT RELEASEDATE FROM DB_GAMES");
-                                echo FindGames(true, false, false ,false, $strdate);        //Get new games from getGamesDate
+                                $foundGameData = FindGames(1, 6);        //Get new games
                             ?>
                         </p>
+                        <div class="col-12">
+                            <div class="row"></div>
+                            <div class="row align-items-center" id="newGames">
+                                <script>
+                                    var foundGameData = <?php echo json_encode($foundGameData) ?>;
+                                    console.log(foundGameData);
+                                    DisplayGames("newGames", foundGameData);
+                                </script>
+                            </div>
+                        </div>
                     </div>
-                    <script>
-                        var main_element = document.getElementById("main_content")
-                        var p = document.createElement("p")
-                    </script>
                 </div>
             </div>
         </div>
