@@ -65,11 +65,22 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
 }
 
 function DisplayGames(divID, gameDataArray) {                              //divID: String
-    var category = document.createElement("h1");
+    var category = document.createElement("p");
+    var carouselID = "";
     if (divID.includes("new")) {
         category.innerHTML = "Game MỚI bạn nên thử";
-        var carouselLocation = document.getElementById(divID);
-        carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, "gameCarouselNew", gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
-                                                                                                                        //have the same length
+        carouselID = "gameCarouselNew";
     }
+    else if (divID.includes("free")) {
+        category.innerHTML = "Game MIỄN PHÍ bạn có thể thích";
+        carouselID = "gameCarouselFree";
+    }
+    else if (divID.includes("recommended")) {
+        category.innerHTML = "Chúng tôi nghĩ bạn nên thử qua chúng";
+        carouselID = "gameCarouselRecom";
+    }
+    var carouselLocation = document.getElementById(divID);
+    carouselLocation.appendChild(category);
+    carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, carouselID, gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
+                                                                                                                    //have the same length
 }

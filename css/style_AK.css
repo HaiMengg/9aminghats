@@ -96,8 +96,12 @@ a, p {
     max-width: 1px;
     max-height: 1px;
 }
-#newGames {
+#newGames, #freeGames, #recommendedGames {
     background-color: #1C1656;
+}
+.carousel-control-prev,
+.carousel-control-next{
+    width: 2vw;
 }
 #c {
     border: 5px solid orangered;

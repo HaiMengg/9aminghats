@@ -111,16 +111,30 @@
                     <div class="row" id="main_content">
                         <p>
                             <?php
-                                $foundGameData = FindGames(1, 6);        //Get new games
+                                $foundNewGame = FindGames(1, 6);        //Get new games
+                                $foundFreeGame = FindGames(2, 6);       //Get free games
+                                $foundRecomGame = FindGames(3, 6);
                             ?>
                         </p>
                         <div class="col-12">
                             <div class="row"></div>
                             <div class="row align-items-center" id="newGames">
                                 <script>
-                                    var foundGameData = <?php echo json_encode($foundGameData) ?>;
-                                    console.log(foundGameData);
-                                    DisplayGames("newGames", foundGameData);
+                                    var foundNewGame = <?php echo json_encode($foundNewGame) ?>;
+                                    DisplayGames("newGames", foundNewGame);
+                                </script>
+                            </div>
+                            <div class="row align-items-center" id="freeGames">
+                                <script>
+                                    var foundFreeGame = <?php echo json_encode($foundFreeGame) ?>;
+                                    DisplayGames("freeGames", foundFreeGame);
+                                </script>
+                            </div>
+                            <div class="row align-items-center" id="recommendedGames">
+                                <script>
+                                    var foundRecomGame = <?php echo json_encode($foundRecomGame) ?>;
+                                    console.log(foundRecomGame);
+                                    DisplayGames("recommendedGames", foundRecomGame);
                                 </script>
                             </div>
                         </div>

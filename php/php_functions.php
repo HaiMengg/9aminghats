@@ -85,6 +85,36 @@
                 }
             }
         }
+        else if ($mode == 2) {
+            $gamesData = FetchFromDB(ConnectDB(), "SELECT `NAME` FROM DB_GAMES WHERE PRICE='FREE'")->fetch_all();
+            for ($x = 0; $x <= count($gamesData) - 1; $x++) {
+                array_push($foundGames, $gamesData[$x][0]);
+            }
+            shuffle($foundGames);
+            if (count($foundGames) > $maxDisplay) {                         //In case user does not want to display all the games found and only a portion of them
+                array_splice($foundGames, $maxDisplay, count($foundGames) - 1, null);
+            }
+            for ($x = 0; $x <= count($foundGames) - 1; $x++) {
+                $game = $foundGames[$x];
+                $logoDir = $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $game . "/";
+                array_push($foundLogoFile, "resources/DB_GAMES/" . $game . "/" . GetFileNoExtension($logoDir, "logo"));
+            }
+        }
+        else if ($mode == 3) {
+            $gamesData = FetchFromDB(ConnectDB(), "SELECT `NAME` FROM DB_GAMES")->fetch_all();
+            for ($x = 0; $x <= count($gamesData) - 1; $x++) {
+                array_push($foundGames, $gamesData[$x][0]);
+            }
+            shuffle($foundGames);
+            if (count($foundGames) > $maxDisplay) {                         //In case user does not want to display all the games found and only a portion of them
+                array_splice($foundGames, $maxDisplay, count($foundGames) - 1, null);
+            }
+            for ($x = 0; $x <= count($foundGames) - 1; $x++) {
+                $game = $foundGames[$x];
+                $logoDir = $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $game . "/";
+                array_push($foundLogoFile, "resources/DB_GAMES/" . $game . "/" . GetFileNoExtension($logoDir, "logo"));
+            }
+        }
         $foundGameData = array(
             0 => $foundGames,
             1 => $foundLogoFile
@@ -99,5 +129,6 @@
                 return $propertyList[$x]; 
             }
         } 
+        return "";
     }
 ?>
