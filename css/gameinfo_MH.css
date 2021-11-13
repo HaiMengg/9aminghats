@@ -1,0 +1,72 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(../resources/font/BreeSerif.otf);
+}
+hr
+{
+    border: 1px solid #9672FA;
+}
+body
+{
+    font-family: BreeSerif;
+    color: white;
+    background-color: #19164F;
+    padding: 5px;
+}
+#slideshow
+{
+    background-color:#1C1656;
+    border-radius: 33px;
+}
+#gamedown
+{
+    border-radius: 33px;
+    background-color: #1C1656;
+    padding: 10% 5% 10% 5%;
+}
+#gamedown img
+{
+    border-radius: 10px;
+    width: 90%;
+    height: 90%;
+    margin: 0% 5% 0% 5%;
+}
+#gamedown a
+{
+    margin: 0% 5% 0% 5%;
+    color: white;
+    width: 90%;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    background: rgb(174,18,252);
+    background: linear-gradient(90deg, rgba(174,18,252,1) 0%, rgba(107,66,252,1) 100%);
+}
+#gamedown tr,td,table
+{
+    text-align: justify;
+    font-size: medium;
+    border-bottom: 1px solid #9672FA;
+    border-spacing: 2%;
+}
+#comment
+{
+    border-top: 1px solid #9672FA;
+    border-right: 1px solid #9672FA;
+    padding: 2% 2% 2% 2%;
+}
+#user_cmt img
+{
+    shape-outside: circle(50%);
+}
+#moregames
+{
+  border-top: 1px solid #9672FA; 
+  padding: 2% 2% 2% 2%;
+}
+#moregames img{
+    border-radius: 5px;
+    width: 90%;
+    height: auto;
+    margin-bottom: 5%;
+}
