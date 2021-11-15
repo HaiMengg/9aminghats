@@ -31,11 +31,12 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
         for (let x = 1; x <= 3; x++) {                          //Repeatedly creates different elements of the same slide
             var element = document.createElement("div");
             element.setAttribute("class", "col-4 text-center");
-            var elementContent = document.createElement("p");           
-            elementContent.innerHTML = gameNameArray[elementNumCount];      //Temporary solution
-            /*var elementContent = document.createElement("img");           //The images are still unstable so LATER
+            element.setAttribute("style", "padding: 1%")
+            /*var elementContent = document.createElement("p");           //Temporary solution      
+            elementContent.innerHTML = gameNameArray[elementNumCount];*/
+            var elementContent = document.createElement("img");           //The images are still unstable so LATER
             elementContent.src = gameLogoArray[elementNumCount];
-            elementContent.id = "gameLogo";*/
+            elementContent.id = "gameLogo";
             row.appendChild(element).appendChild(elementContent);
             elementNumCount++;
         }
@@ -65,22 +66,29 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
 }
 
 function DisplayGames(divID, gameDataArray) {                              //divID: String
-    var category = document.createElement("p");
+    var categorySpan = document.createElement("span");
+    var categoryP = document.createElement("p");
+    var categoryRing = document.createElement("img");
+    categoryRing.src="resources/Homepage/ring.png";
+    categoryRing.id="categoryRing";
+    categorySpan.appendChild(categoryRing);
+    categoryP.appendChild(categorySpan);
+    
     var carouselID = "";
     if (divID.includes("new")) {
-        category.innerHTML = "Game MỚI bạn nên thử";
+        categoryP.innerHTML += " GAME MỚI";
         carouselID = "gameCarouselNew";
     }
     else if (divID.includes("free")) {
-        category.innerHTML = "Game MIỄN PHÍ bạn có thể thích";
+        categoryP.innerHTML += " GAME MIỄN PHÍ";
         carouselID = "gameCarouselFree";
     }
     else if (divID.includes("recommended")) {
-        category.innerHTML = "Chúng tôi nghĩ bạn nên thử qua chúng";
+        categoryP.innerHTML += " GAME HAY";
         carouselID = "gameCarouselRecom";
     }
     var carouselLocation = document.getElementById(divID);
-    carouselLocation.appendChild(category);
+    carouselLocation.appendChild(categoryP);
     carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, carouselID, gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
                                                                                                                     //have the same length
 }

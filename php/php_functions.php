@@ -125,10 +125,9 @@
     function GetFileNoExtension($dir, $fileName) {          //Get the name of a file regardless of its extension (might cause bug if there are two files with identical names but different extension)
         $propertyList = scandir($dir);
         for ($x = 0; $x <= count($propertyList) - 1; $x++) {
-            if (strpos($propertyList[$x], $fileName) !== false) { 
+            if (strpos($propertyList[$x], $fileName) !== false) {
                 return $propertyList[$x]; 
             }
-        } 
-        return "";
+        }
     }
 ?>
