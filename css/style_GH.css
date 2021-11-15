@@ -4,7 +4,7 @@ html {
 }
 @font-face {
     font-family: BreeSerif;
-    src: url(font/cnttqn.net_BreeSerif.otf);
+    src: url(resources/font/cnttqn.net_BreeSerif.otf);
 }
 .rowlogo
 {
