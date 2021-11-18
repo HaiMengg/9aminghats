@@ -9,6 +9,7 @@
             die("Connection error: " . mysqli_connect_error());
         }
         else {
+            $connect->set_charset("utf8mb4");
             return $connect;   //Pass returned value to mysqli_query
         }
     }
@@ -19,12 +20,12 @@
 
     function FileProcessing($filePath, $content = "") {
         if ($content != "") {
-            file_put_contents($filePath, serialize($content), LOCK_EX);
+            file_put_contents($filePath, $content, LOCK_EX);
             return true;
         }
         else {
-            $array = unserialize(file_get_contents($filePath));
-            return $array;
+            $string = file_get_contents($filePath);
+            return $string;
         }
     }
 
@@ -34,15 +35,6 @@
         }
         $array[0] = $newValue;
         return $array;
-    }
-
-    function CreatePage($name, $content, $dir) {
-        $template = FileProcessing($_SERVER["DOCUMENT_ROOT"] . "pages/template/blank_template.php");
-        $template_index = strpos($template, '<div class="row" id="main_content">');
-        $append_pos = $template_index + strlen('<div class="row" id="main_content">');
-        $new_string = substr_replace($template, preg_replace('/\s+/', '', $content), $append_pos);
-        FileProcessing($dir . $name, $new_string);
-        return true;
     }
 
     function StringToDate($date_string) {    //The format has to be dd/mm/yyyy
@@ -59,6 +51,7 @@
     */
     function FindGames($mode, $maxDisplay) {        
         $foundGames = array();
+        $foundGameNum = array();
         $foundLogoFile = array();
         if ($mode == 1) {
             $today = date_create_from_format("d/m/Y", date('d/m/Y'));
@@ -82,6 +75,9 @@
                     $game = $foundGames[$x];
                     $logoDir = $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $game . "/";
                     array_push($foundLogoFile, "resources/DB_GAMES/" . $game . "/" . GetFileNoExtension($logoDir, "logo"));
+
+                    $gameNum = FetchFromDB(ConnectDB(), "SELECT NUMCOUNTER FROM DB_GAMES WHERE `NAME`='" . $foundGames[$x] . "'")->fetch_row();
+                    array_push($foundGameNum, $gameNum[0]);
                 }
             }
         }
@@ -98,6 +94,9 @@
                 $game = $foundGames[$x];
                 $logoDir = $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $game . "/";
                 array_push($foundLogoFile, "resources/DB_GAMES/" . $game . "/" . GetFileNoExtension($logoDir, "logo"));
+
+                $gameNum = FetchFromDB(ConnectDB(), "SELECT NUMCOUNTER FROM DB_GAMES WHERE `NAME`='" . $foundGames[$x] . "'")->fetch_row();
+                array_push($foundGameNum, $gameNum[0]);
             }
         }
         else if ($mode == 3) {
@@ -113,11 +112,15 @@
                 $game = $foundGames[$x];
                 $logoDir = $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $game . "/";
                 array_push($foundLogoFile, "resources/DB_GAMES/" . $game . "/" . GetFileNoExtension($logoDir, "logo"));
+
+                $gameNum = FetchFromDB(ConnectDB(), "SELECT NUMCOUNTER FROM DB_GAMES WHERE `NAME`='" . $foundGames[$x] . "'")->fetch_row();
+                array_push($foundGameNum, $gameNum[0]);
             }
         }
         $foundGameData = array(
             0 => $foundGames,
-            1 => $foundLogoFile
+            1 => $foundLogoFile,
+            2 => $foundGameNum
         );
         return $foundGameData;
     }
@@ -129,5 +132,67 @@
                 return $propertyList[$x]; 
             }
         }
+    }
+
+
+    function GetGameData($dataName, $gameNO) {
+        $requestedData = FetchFromDB(ConnectDB(), "SELECT `" . $dataName . "` FROM DB_GAMES WHERE `NUMCOUNTER`=" . $gameNO)->fetch_row();
+        $urlpos = strpos($requestedData[0], "watch?v=") + 8;
+        if ($dataName == "TRAILER") {
+            $requestedData[0] = substr($requestedData[0], $urlpos, strlen($requestedData[0]) - $urlpos);
+            return $requestedData[0];
+        }
+        else if ($dataName == "GENRE") {
+            $genresNum = explode("-",$requestedData[0]);
+            $genresString = array();
+            for ($i = 0; $i <= count($genresNum) - 1; $i++) {
+                $queryResult = FetchFromDB(ConnectDB(), "SELECT `Genre` FROM DB_GENRES WHERE `No.`=" . $genresNum[$i])->fetch_row();
+                array_push($genresString, $queryResult[0]);
+            }
+            return $genresString;
+        }
+        else if ($dataName == "METACRITS") {
+            if ($requestedData[0] == 0) return "Chưa cập nhật";
+            else return $requestedData[0];
+        }
+        else return $requestedData[0];
+    }
+
+    function GetGameImage($gameDir) {
+        $imgArray = array();
+        $propertyList = scandir($gameDir);
+        for ($i = 0; $i <= count($propertyList) - 1; $i++) {
+            if (strpos($propertyList[$i], "png") !== false || strpos($propertyList[$i], "jpg") !== false || strpos($propertyList[$i], "jpeg") !== false) {
+                if (intval(substr($propertyList[$i], 0, 1)) != 0) {
+                    array_push($imgArray, $gameDir . $propertyList[$i]);
+                }
+            }
+        }
+        return $imgArray;
+    }
+
+    function GetGameLogo($gameDir) {
+        $propertyList = scandir($gameDir);
+        for ($i = 0; $i <= count($propertyList) - 1; $i++) {
+            if (strpos($propertyList[$i], "logo") !== false) {
+                return $gameDir . $propertyList[$i];
+            }
+        }
+    }
+
+
+    function CreatePage($name, $content, $dir) {
+        $template = FileProcessing($_SERVER["DOCUMENT_ROOT"] . "/pages/template/gameinfo.php");
+        $insertion = "<!--Where the magic happens-->";
+        $new_string = str_replace($insertion, $content, $template);
+        FileProcessing($dir . $name, $new_string);
+    }
+
+    $gameName = $_POST['name'];
+    $gameNumcounter = $_POST['num'];
+    if (isset($gameName) !== false) {
+        CreatePage("gamepage.php", 
+        "<?php $" . "gameNumber=" . $gameNumcounter . "; $" . "gameDir='" . "resources/DB_GAMES/" . $gameName . "/'; ?>", 
+        $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $gameName . "/");
     }
 ?>

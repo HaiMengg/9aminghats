@@ -17,7 +17,7 @@ function Sidebar() {
         mainPanel.setAttribute("class", "col-9");
         searchDiv.setAttribute("class", "row")
         topbar_mobile.style.visibility="hidden";
-        banner.setAttribute("src", "resources/Homepage/banner.png");
+        if (document.body.id == "index_body") banner.setAttribute("src", "resources/Homepage/banner.png");
         HideSidebarMobi("sidebar_mobile");
     }
     if (screenWidth < 1760) {
@@ -25,7 +25,7 @@ function Sidebar() {
         mainPanel.setAttribute("class", "col-12");
         searchDiv.setAttribute("class", "d-none d-block");
         topbar_mobile.style.visibility="visible";
-        banner.setAttribute("src", "resources/Homepage/banner_small.png");
+        if (document.body.id == "index_body") banner.setAttribute("src", "resources/Homepage/banner_small.png");
     }
 }
 
@@ -40,4 +40,20 @@ function HideSidebarMobi(sidebarID) {
 function SidebarSwitch() {
     HideSidebarMobi("sidebar_mobile");
     ShowSidebarMobi("sidebar_mobile_2");
+}
+
+
+function ScoreBackground() {
+    var score = document.getElementById("score");
+    var scoreInt = score.innerHTML;
+    var scoreCol = document.getElementById("score_col");
+    var scoreCol1 = document.getElementById("score_col_1")
+    if (scoreInt >= 80) scoreCol.style="background-color: green;";
+    else if (scoreInt >= 50 && scoreInt < 80) scoreCol.style="background-color: yellow;";
+    else if (scoreInt == "Chưa cập nhật") {
+        scoreCol.setAttribute("class", "col-12 text-center");
+        scoreCol1.setAttribute("class", "d-none d-block");
+        scoreCol.style="background-color: dimgrey";
+    }
+    else scoreCol.style="background-color: red;";
 }
