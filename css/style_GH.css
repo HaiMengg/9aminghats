@@ -1,148 +1,268 @@
-html {
-    width: 100%;
-    height: 100%;
-}
 @font-face {
-    font-family: BreeSerif;
-    src: url(font/cnttqn.net_BreeSerif.otf);
-}
-.rowlogo
-{
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-.logo{
-    max-width: 400px;
-    height: auto;
-}
-.rowcontent {
-    height: 70%;
-    width: 100%;
-}
-.imgmain
-{
-    max-width: 28%;
-    height: auto;  
-    text-align: center;
-    position: absolute;
-    top: 32%;
-    right: 15%;
-}
-.circle
-{
-    position: absolute;
-    right: -50%;
-    top:-10%;
-}
-.whitecol
-{
-    height: 90%;
-    margin: 0px;
-    background-color: white;
-    border-radius: 0px 25px 25px 0px;
-}
-body {
-    width: 100%;
-    height: 100%;
-    padding: 1.2% 1.875% 1.875% 1.2%;
-}
-.main {
-    background-color: #1E175C;
-    padding: 25px;
-    height: 100%;
-    border-radius: 30px;
-}
-#main-info {
-    background: url(../resources/AboutUs/main-page/Main_back.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 110%;
-    margin: 5% 0% 0% 5%;
-    padding: 5% 5% 5% 5%;
-    border-radius: 25px;
-    font-family: BreeSerif;
-    font-size: 14px;
-}
-.details {
-    background: rgb(141,104,244);
-    background: linear-gradient(90deg, rgba(141,104,244,1) 0%, rgba(167,104,246,1) 100%);
-    text-align: center;
-    padding: 1% 2% 2% 2%;
-    border-radius: 25px;
-    font-family: BreeSerif;
-    margin: 5% 0% 10% 10%;
-    height: 459px;
-}
-#next, #back {
-    cursor: pointer;
-    position: absolute;
-    top: 243px;
-    height: 50px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 0px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    transition: 0.15s ease;
-    border-radius: 50%;
-    user-select: none;
-    background-color: #111051;
-    opacity: 1;
-    text-decoration: none;
-}
-#next:hover, #back:hover {
-    opacity: 0.8;
-}
-#next {
-    right: -13px;
+    font-family: mainFont;
+    src: url(../resources/fonts/BreeSerif.otf);
   }
-#back {
-    left: 55px;
-}
-#bio {
-    background-color: white;
-    margin: 25px 18px 25px 0px;
-    height: 400px;
+  
+body {
+    background-image: url(../resources/Payment/bg-4.png);
+    background-repeat: repeat;
+    background-size: cover;
+    padding-top: 0px;
+    background-color: #1F005B;
     border-radius: 20px;
-    padding: 6%;
-    text-align: left;
-    font-size: 15px;
+    font-family: mainFont;
+}#main {
+    position: relative;
+    background-color: #1E175C;
+    width: 1090px;
+    height: 695px;
+    border-radius: 35px;
+    margin: 2.3% auto auto auto;
 }
-#image {
-    background-color: white;
-    width: 91.7%;
-    margin: 25px 4px 0 18px;
-    border-radius: 20px;
-    border-radius: 20px;
+#arrow {
+    margin-left: 4%;
+    margin-top: 4%;
+    padding-bottom: 5px;
+    width: 90px;
 }
-#information {
-    text-align: left;
-    margin-left: 12%;
-    padding-top: 10px;
-}
-#name, #dob {
+#payment-heading {
+    text-align: center;
     color: white;
+    margin: auto;
+}
+#give-choice {
+    text-align: right;
+    color: white;
+    margin-top: 23px;
+    font-size: 25px;
+}
+
+
+/* Nút chọn phương thức */
+#choose-btn {
+    position: relative;
+}
+#choose-method {
+    text-align: center;
+    user-select: none;
+    color: #8D68F4;
+    margin-top: 20px;
+    font-size: 25px;
+    background-color: white;
+    border: 1px solid white;
+    width: 255px;
+}
+#choose-method:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+#arrow-down{
+    position: absolute;
+    right: 48.4%;
+    text-align: center;
+    color: #8D68F4;
+    margin-top: 20px;
+    font-size: 25px;
+    background-color: white;
+    border: 1px solid white;
+    width: 20px;
+}
+#arrow-down:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+#dropdown {
+    position: relative;
+    bottom: 5px;
+    border: solid #8D68F4;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+
+/* Menu các phương thức */
+#dropdown-choice {
+    display: inline-block;
+}
+.choice-list {
+    position: relative;
+    display: none;
+    text-align: center;
+    user-select: none;
+    color: white;
+    font-size: 25px;
+    width: 255px;
+    z-index: 6;
+}
+.choice {
+    background-color: #8D68F4;
+}
+.choice:hover {
+    background-color: #AE12FC;
+    cursor: pointer;
+}
+.show {
+    display: block;
+}
+#wallet-description {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+/* Nút xác nhận */
+#conf-btn {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    text-decoration: none;
     font-size: 20px;
-}
-.fa {
+    padding: 8px 50px 8px 50px;
     color: white;
-    padding-top: 1px;
-    font-size: 45px;
-    width: 50px;
-    text-align: left;
-    text-decoration: none;
+    text-align: center;
+    background-image: linear-gradient(to right, #AE12FC, #6B42FC);
+    border-radius: 25px;
+    display: none;
 }
-.fa:hover {
-    text-decoration: none;
-}
-.carousel-item {
-    transition: 0.25s;
-}
-#image-bottom {
-    margin: 0;
-    padding-top: 100px;
+
+.information {
+    padding: 0 auto 0 auto;
+    margin: 0 auto;
+    color: white;
+    position: absolute;
+    bottom: 15%;
     width: 100%;
+}
+
+/* Ví điện tử */
+#w-main-info {
+    width: 55%;
+    height: 350px;
+    margin: auto;
+    padding-top: 5%;
+    padding-left: 8%;
+    text-align: left;
+    font-size: 30px;
+    background-color: #5755D5;
+    border-radius: 20px;
+}
+
+/* Thông tin thẻ */
+#c-main-info {
+    width: 75%;
+    height: 355px;
+    margin: auto;
+    text-align: left;
+    font-size: 30px;
+    /* border: 1px solid red; */
+}
+.info {
+    padding-top: 25px;
+}
+
+/* Không hiện khi chưa có lựa chọn */
+#wallet-info {
+    display: none;
+}
+#card-info {
+    display: none;
+}
+
+
+.input {
+    position: relative;
+}
+.method-btn {
+    position: relative;
+}
+.method-btn:hover {
+    cursor: pointer;
+}
+#master-card {
+    position: absolute;
+    right: 38px;
+}
+#visa-card {
+    position: absolute;
+    left: 38px;
+}
+
+/* Đề mục */
+.instruct {
+    font-size: 23px;
+    margin-bottom: 1px;
+}
+
+/* Số tài khoản */
+#card-numb {
+    position: relative;
+    top: 60px;
+    right: 25px;
+}
+#numb {
+    margin-top: 0px;
+    width: 100%;
+    height: 50%;
+    font-size: 25px;
+}
+
+/* Ngày hết hạn */
+#xpire-date {
+    position: relative;
+    top: 70px;
+    right: 25px;
+}
+#expire {
+    text-align: center;
+    margin-top: 0px;
+    width: 28%;
+    height: 50%;
+    font-size: 25px;
+}
+
+/* Số tiền giao dịch */
+#credit-amount {
+    position: relative;
+    top: 85px;
+    right: 25px;
+}
+#money {
+    margin-top: 0px;
+    width: 100%;
+    height: 50%;
+    font-size: 25px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Tên chủ thẻ */
+#name {
+    position: relative;
+    top: 60px;
+    left: 25px;
+}
+#holder {
+    margin-top: 0px;
+    width: 100%;
+    height: 50%;
+    font-size: 25px;
+}
+
+/* Mã bảo vệ */
+#security {
+    position: relative;
+    top: 70px;
+    left: 25px;
+}
+#CVV {
+    margin-top: 0px;
+    width: 100%;
+    height: 50%;
+    font-size: 25px;
 }
