@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sign in</title>
+        <title>Đăng nhập | 9aminghats</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" sizes="180x180" href="../resources/favicon/apple-touch-icon.png">
@@ -50,7 +50,7 @@
                     Bạn chưa có tài khoản?
                     <a href="../pages/signup.php" style="color: white;">Đăng ký</a>
                 </div>
-                 <div class="row text-center inline" style="font-size: large;">
+                <div class="row text-center inline" style="font-size: large;">
                     <a href="../pages/forgotpassword.php" style="color: white;">Bạn quên mật khẩu?</a>
                 </div>
             </div>
