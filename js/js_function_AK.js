@@ -1,6 +1,7 @@
 function CreateCarousel(elementNum, carouselID, gameDataArray) {           //elementNum: int, carouselID: String, gameDataArray: array of game data obtained from the FindGames() pHp function
     var gameNameArray = gameDataArray[0];
     var gameLogoArray = gameDataArray[1];
+    var gameNumArray = gameDataArray[2];
 
     var carousel = document.createElement("div");    //1
     carousel.setAttribute("id", carouselID);
@@ -8,6 +9,7 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
     carousel.setAttribute("data-bs-slide", "carousel");
     var carouselInner = document.createElement("div");  //2
     carouselInner.setAttribute("class", "carousel-inner");
+    carouselInner.style="padding: 3%";
     carousel.appendChild(carouselInner);
 
     var slideNum = 0;       //3
@@ -25,17 +27,17 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
             carouselItem.setAttribute("class", "carousel-item");   //3b
         }
         var row = document.createElement("div");
-        row.setAttribute("class", "row");
+        row.setAttribute("class", "row align-items-center");
         carouselInner.appendChild(carouselItem).appendChild(row);
 
         for (let x = 1; x <= 3; x++) {                          //Repeatedly creates different elements of the same slide
             var element = document.createElement("div");
             element.setAttribute("class", "col-4 text-center");
-            var elementContent = document.createElement("p");           
-            elementContent.innerHTML = gameNameArray[elementNumCount];      //Temporary solution
-            /*var elementContent = document.createElement("img");           //The images are still unstable so LATER
+            element.setAttribute("style", "padding: 1%");
+            var elementContent = document.createElement("img");           //The images are still unstable so LATER
             elementContent.src = gameLogoArray[elementNumCount];
-            elementContent.id = "gameLogo";*/
+            elementContent.id = "gameLogo";
+            elementContent.setAttribute("onclick", "DataToPHP('" + gameNameArray[elementNumCount] + "', '" + gameNumArray[elementNumCount] + "')");
             row.appendChild(element).appendChild(elementContent);
             elementNumCount++;
         }
@@ -64,12 +66,135 @@ function CreateCarousel(elementNum, carouselID, gameDataArray) {           //ele
     return carousel;
 }
 
-function DisplayGames(divID, gameDataArray) {                              //divID: String
-    var category = document.createElement("h1");
-    if (divID.includes("new")) {
-        category.innerHTML = "Game MỚI bạn nên thử";
-        var carouselLocation = document.getElementById(divID);
-        carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, "gameCarouselNew", gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
-                                                                                                                        //have the same length
+function CreateCarouselSingle(elementNum, carouselID, gameImgArray, youtubeLink) {           //elementNum: int, carouselID: String, gameImgArray: array of game image data obtained from the GetGameImage() pHp function
+    var carousel = document.createElement("div");    //1
+    carousel.setAttribute("id", carouselID);
+    carousel.setAttribute("class", "carousel slide");
+    carousel.setAttribute("data-bs-interval", "false");
+    var carouselInner = document.createElement("div");  //2
+    carouselInner.setAttribute("class", "carousel-inner");
+    carousel.appendChild(carouselInner);
+
+    for (let i = 0; i <= elementNum; i++) {
+        var carouselItem = document.createElement("div");
+        carouselInner.appendChild(carouselItem);
+        if (i == 0) {  
+            carouselItem.setAttribute("class", "carousel-item active"); //3a             //If first slide, then set it to active (primary slide)
+            carouselItem.style="padding: 5%"
+            var iframe = document.createElement("iframe");
+            iframe.src="https://www.youtube.com/embed/" + youtubeLink + "?autoplay=1&mute=1";
+            iframe.style="width: 100%; height: 60vh;";
+            carouselItem.appendChild(iframe);
+        }
+        else {
+            carouselItem.setAttribute("class", "carousel-item");   //3b
+            var row = document.createElement("div");
+            row.setAttribute("class", "row");
+            carouselItem.appendChild(row);
+                            //Repeatedly creates different elements of the same slide
+            var element = document.createElement("div");
+            element.setAttribute("class", "col-12");
+            element.setAttribute("style", "padding: 5%");
+            var elementContent = document.createElement("img");           //The images are still unstable so LATER
+            elementContent.src = gameImgArray[i - 1];
+            elementContent.id = "gameImg";
+            row.appendChild(element).appendChild(elementContent);
+        }
     }
+
+    var carouselPrev = document.createElement("button");
+    carouselPrev.setAttribute("class", "carousel-control-prev");
+    carouselPrev.setAttribute("data-bs-target", "#" + carouselID);
+    carouselPrev.setAttribute("role", "button");
+    carouselPrev.setAttribute("data-bs-slide", "prev");
+    var prevSpan = document.createElement("span");
+    prevSpan.setAttribute("class", "carousel-control-prev-icon");
+    prevSpan.setAttribute("aria-hidden", "true");
+    carousel.appendChild(carouselPrev).appendChild(prevSpan);
+
+    var carouselNext = document.createElement("button");
+    carouselNext.setAttribute("class", "carousel-control-next");
+    carouselNext.setAttribute("data-bs-target", "#" + carouselID);
+    carouselNext.setAttribute("role", "button");
+    carouselNext.setAttribute("data-bs-slide", "next");
+    var nextSpan = document.createElement("span");
+    nextSpan.setAttribute("class", "carousel-control-next-icon");
+    nextSpan.setAttribute("aria-hidden", "true");
+    carousel.appendChild(carouselNext).appendChild(nextSpan);
+
+    return carousel;
+}
+
+function DisplayGames(divID, gameDataArray) {                              //divID: String
+    var categorySpan = document.createElement("span");
+    var categoryP = document.createElement("p");
+    var categoryRing = document.createElement("img");
+    categoryRing.src="resources/Homepage/ring.png";
+    categoryRing.id="categoryRing";
+    categorySpan.appendChild(categoryRing);
+    categoryP.appendChild(categorySpan);
+    
+    var carouselID = "";
+    if (divID.includes("new")) {
+        categoryP.innerHTML += " GAME MỚI";
+        carouselID = "gameCarouselNew";
+    }
+    else if (divID.includes("free")) {
+        categoryP.innerHTML += " GAME MIỄN PHÍ";
+        carouselID = "gameCarouselFree";
+    }
+    else if (divID.includes("recommended")) {
+        categoryP.innerHTML += " GAME HAY";
+        carouselID = "gameCarouselRecom";
+    }
+    else if (divID == "moreGames") {
+        categoryP.innerHTML += " NHỮNG GAME HAY KHÁC";
+        carouselID = "gameCarouselMore";
+    }
+    var carouselLocation = document.getElementById(divID);
+    carouselLocation.appendChild(categoryP);
+    carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, carouselID, gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
+                                                                                                                    //have the same length
+}
+
+function DisplaySingleData(divID, gameData) {
+    var div = document.getElementById(divID);
+    if (divID != 'genre') div.innerHTML = gameData;
+    else {
+        var dataString = gameData.join(", ");
+        div.innerHTML = dataString;
+    }
+}
+
+function DisplayPurchase() {
+    var price = document.getElementById("price");
+    var priceString = price.innerHTML;
+    var priceInt = 0;
+    var purchaseButton = document.getElementById("price_2");
+    if (price.innerHTML == "FREE") {
+        purchaseButton.innerText = "Lưu vào thư viện";
+    }
+    else {
+        purchaseButton.innerText = "Mua game";
+        priceString = priceString.replace(" VND", "");
+        priceString = priceString.replace(".", "");
+        priceInt = parseInt(priceString);           //Do something with this later, like transmit it somewhere for calculation
+    }
+}
+
+function DataToPHP(gameName, gameNum) {
+    var formData = new FormData();
+    formData.append("name", gameName);
+    formData.append("num", gameNum);
+
+    $.ajax({
+        url: 'php/php_functions.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(){
+            window.location.href = "resources/DB_GAMES/" + gameName + "/gamepage.php";
+        }
+    })
 }

@@ -1,3 +1,7 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(/resources/font/BreeSerif.otf);
+}
 body {
     background-color: #19164F;
 }
@@ -53,8 +57,8 @@ body {
     border-radius: 40px;
 }
 #category img {
-    width: 30px;
-    height: 30px
+    width: 1.5vw;
+    height: 3vh
 }
 .sticky {
     width: 23vw; /* Set the width of the sidebar */
@@ -90,16 +94,120 @@ a, p {
     display: inline-block;
 }
 #main_content {
-    margin-top: 5vh;
+    margin-top: 2vh;
+}
+#banner {
+    margin-bottom: 2vh;
 }
 #gameLogo {
-    max-width: 1px;
-    max-height: 1px;
+    cursor: pointer;
+    background-color: #231E57;
+    border-radius: 10px;
+    max-width: 100%;
+    height: 12vh;
 }
-#newGames {
+#newGames, #freeGames, #recommendedGames, #moreGames {
+    margin-bottom: 2vh;
+    padding: 1%;
+}
+#gameCarouselNew, #gameCarouselFree, #gameCarouselRecom, #gameCarouselMore {
     background-color: #1C1656;
+    border-radius: 15px;
+}
+#categoryRing {
+    max-width: 100%;
+    height: 5vh
+}
+.carousel-control-prev,
+.carousel-control-next{
+    width: 2vw;
+}
+#topbar_mobile {
+    position: fixed;
+    display: block;
+    background-color: #1C1656;
+    top:0;
+}
+#topbar_mobile img {
+    max-width: auto;
+    height: 7vh;
+}
+#sidebar_mobile {
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top:0;
+    left:0;
+}
+#sidebar_mobile_col {
+    padding: 3%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
+}
+#sidebar_mobile_2 {
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top:0;
+    left:0;
+}
+#sidebar_mobile_2_col {
+    padding: 3%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
+}
+#sidebar_mobile_3 {
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top: 0;
+    padding-left: 61vw;
+}
+#sidebar_mobile_3_col {
+    padding: 6%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
 }
 #c {
     border: 5px solid orangered;
     padding: 2%;
+}
+
+@media only screen and (min-width: 2143px) {
+    p, a, h1 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 1759px) {
+    #main_content {
+        margin-top: 5vh;
+    }
+    p, a, h1 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    #main_content {
+        margin-top: 10vh;
+    }
+    p, a, h1 {
+        font-size: 20px;
+    }
+    #gamelogo img {
+        height: 6vh;
+    }
 }
