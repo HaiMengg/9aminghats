@@ -301,7 +301,7 @@
                                         </div>
                                     </div>
                                     <div class="col-8" id="moregames">
-                                        <div class="row align-items-center">
+                                         <div class="row align-items-center" id="moreGames">
                                             <script>
                                                 var foundMoreGame = <?php echo json_encode($foundMoreGame) ?>;
                                                 DisplayGames("moreGames", foundMoreGame);
