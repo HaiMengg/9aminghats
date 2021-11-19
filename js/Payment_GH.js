@@ -74,8 +74,6 @@ document.getElementById('numb').addEventListener('keydown', function (typeNumb) 
         if (validForm === 4 || validForm === 9 || validForm === 14)
             typeNumb.target.value = typeNumb.target.value + ' ';
     } 
-    else {
-    }
 });
 
 // Định dạng tháng và năm hết hạng
