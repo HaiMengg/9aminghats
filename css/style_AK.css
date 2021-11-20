@@ -1,8 +1,9 @@
 @font-face {
     font-family: BreeSerif;
-    src: url(/resources/font/BreeSerif.otf);
+    src: url(/resources/font/cnttqn.net_BreeSerif.otf);
 }
 body {
+    font-family: BreeSerif;
     background-color: #19164F;
 }
 #content {
@@ -92,6 +93,10 @@ a, p {
 }
 #user_buttons {
     display: inline-block;
+}
+#user_buttons_anon {
+    border-radius: 15px;
+    background-image: linear-gradient(to right, #ab14fc , #713efc);
 }
 #main_content {
     margin-top: 2vh;
