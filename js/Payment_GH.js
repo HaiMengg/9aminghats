@@ -64,27 +64,36 @@ function chooseCardType(type) {
 }
 
 // Định dạng số thẻ ngân hàng
-document.getElementById('numb').addEventListener('keydown', function (typeNumb) {
-    var validForm = typeNumb.target.value.length;
-    if (typeNumb.key === 'Backspace' && (typeNumb.target.value.length === 5 || typeNumb.target.value.length === 10 || typeNumb.target.value.length === 15)) {
-        typeNumb.target.value = typeNumb.target.value.slice(0, -1);
-    }
-    console.log(typeof typeNumb.target.value);
-    if (typeNumb.key === '0' || typeNumb.key === '1' || typeNumb.key === '2' || typeNumb.key === '3' || typeNumb.key === '4' || typeNumb.key === '5' || typeNumb.key === '6' || typeNumb.key === '7' || typeNumb.key === '8' || typeNumb.key === '9') {
+document.getElementById('numb').addEventListener('input', function (cNumber) {
+    var validForm = cNumber.target.value.length;
+    if (parseInt(cNumber.target.value) >= 0 || parseInt(cNumber.target.value) <= 9) {
         if (validForm === 4 || validForm === 9 || validForm === 14)
-            typeNumb.target.value = typeNumb.target.value + ' ';
+            cNumber.target.value = cNumber.target.value + " ";
     } 
+    else {
+        cNumber.target.value = "";
+    }
+});
+document.getElementById('numb').addEventListener('keydown', function (retypeNumb) {
+    if (retypeNumb.key === 'Backspace' && (retypeNumb.target.value.length === 5 || retypeNumb.target.value.length === 10 || retypeNumb.target.value.length === 15)) {
+        retypeNumb.target.value = retypeNumb.target.value.slice(0, -1);
+    }
 });
 
 // Định dạng tháng và năm hết hạng
-document.getElementById('expire').addEventListener('keydown', function (typeExpiry) {
-    var month = typeExpiry.target.value;
-    if (typeExpiry.key === 'Backspace' && typeExpiry.target.value.length === 3) {
-        typeExpiry.target.value = typeExpiry.target.value.slice(0, -1);
-    }
-    if (typeExpiry.key === '0' || typeExpiry.key === '1' || typeExpiry.key === '2' || typeExpiry.key === '3' || typeExpiry.key === '4' || typeExpiry.key === '5' || typeExpiry.key === '6' || typeExpiry.key === '7' || typeExpiry.key === '8' || typeExpiry.key === '9') {
+document.getElementById('expire').addEventListener('input', function (expireMonth) {
+    var month = expireMonth.target.value;
+    if (parseInt(month) >= 0 || parseInt(month) <= 9) {
         if (month.length === 2) 
-            typeExpiry.target.value = typeExpiry.target.value + "/";
+            expireMonth.target.value = expireMonth.target.value + "/";
+    } 
+    else {
+        expireMonth.target.value = "";
+    }
+});
+document.getElementById('expire').addEventListener('keydown', function (retypeExpiry) {
+    if (retypeExpiry.key === 'Backspace' && retypeExpiry.target.value.length === 3) {
+        retypeExpiry.target.value = retypeExpiry.target.value.slice(0, -1);
     }
 });
 
