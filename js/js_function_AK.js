@@ -370,4 +370,58 @@ function UserButtons() {
         sideBar3AnonButtons.style = "display: none";
         sideBar3UserButton.style -= "display: none";
     }
+    else if (divID.includes("recommended")) {
+        categoryP.innerHTML += " GAME HAY";
+        carouselID = "gameCarouselRecom";
+    }
+    else if (divID == "moreGames") {
+        categoryP.innerHTML += " NHỮNG GAME HAY KHÁC";
+        carouselID = "gameCarouselMore";
+    }
+    var carouselLocation = document.getElementById(divID);
+    carouselLocation.appendChild(categoryP);
+    carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, carouselID, gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
+                                                                                                                    //have the same length
+}
+
+function DisplaySingleData(divID, gameData) {
+    var div = document.getElementById(divID);
+    if (divID != 'genre') div.innerHTML = gameData;
+    else {
+        var dataString = gameData.join(", ");
+        div.innerHTML = dataString;
+    }
+}
+
+function DisplayPurchase() {
+    var price = document.getElementById("price");
+    var priceString = price.innerHTML;
+    var priceInt = 0;
+    var purchaseButton = document.getElementById("price_2");
+    if (price.innerHTML == "FREE") {
+        purchaseButton.innerText = "Lưu vào thư viện";
+    }
+    else {
+        purchaseButton.innerText = "Mua game";
+        priceString = priceString.replace(" VND", "");
+        priceString = priceString.replace(".", "");
+        priceInt = parseInt(priceString);           //Do something with this later, like transmit it somewhere for calculation
+    }
+}
+
+function DataToPHP(gameName, gameNum) {
+    var formData = new FormData();
+    formData.append("name", gameName);
+    formData.append("num", gameNum);
+
+    $.ajax({
+        url: 'php/php_functions.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(){
+            window.location.href = "resources/DB_GAMES/" + gameName + "/gamepage.php";
+        }
+    })
 }

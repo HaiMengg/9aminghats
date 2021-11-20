@@ -15,7 +15,11 @@
         <link rel="stylesheet" href="css/style_AK.css">
     </head>
 
+<<<<<<< HEAD
     <body onload="Sidebar(); UserButtons();" onresize="Sidebar()" id="index_body">
+=======
+    <body onload="Sidebar()" onresize="Sidebar()" id="index_body">
+>>>>>>> 301515ad0f5e5ab7c83d5615df5df181b1dfcb4a
         <!--Connect to mySQL database-->
         <?php include "php/php_functions.php"; 
             $conn = ConnectDB();
@@ -197,6 +201,7 @@
                         </div>
                         <div class="col-2 text-end">
                             <div id="user_buttons">
+<<<<<<< HEAD
                                 <div class="row align-items-center" id="user_buttons_anon">
                                     <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="pages/signin.php">Đăng nhập</a></div>
                                     <div class="col-6 text-center"><a href="pages/signup.php">Đăng kí</a></div>
@@ -205,6 +210,9 @@
                                     <div class="col-6 text-center"><p id="user_button_username"></p></div>
                                     <div class="col-6 text-center"><a href="" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
                                 </div>
+=======
+                                <a href="#"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a>
+>>>>>>> 301515ad0f5e5ab7c83d5615df5df181b1dfcb4a
                             </div>
                         </div>
                     </div>

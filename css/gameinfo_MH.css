@@ -1,6 +1,10 @@
 @font-face {
     font-family: BreeSerif;
+<<<<<<< HEAD
     src: url(/resources/font/cnttqn.net_BreeSerif.otf);
+=======
+    src: url(/resources/font/BreeSerif.otf);
+>>>>>>> 301515ad0f5e5ab7c83d5615df5df181b1dfcb4a
 }
 hr
 {
