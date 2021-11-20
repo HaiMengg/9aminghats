@@ -1,0 +1,95 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(/resources/font/cnttqn.net_BreeSerif.otf);
+}
+hr
+{
+    border: 1px solid #9672FA;
+}
+body
+{
+    font-family: BreeSerif;
+    color: white;
+    background-color: #19164F;
+    padding: 5px;
+}
+#name {
+    font-size: 50px;
+}
+#slideshow
+{
+    background-color:#1C1656;
+    border-radius: 33px;
+}
+#gameImg {
+    max-width: 100%;
+    height: 60vh;
+    border-radius: 30px;
+}
+#price_2 {
+    border-radius: 20px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+#other_game_info p {
+    margin-bottom: 0;
+}
+#gamedown
+{
+    border-radius: 33px;
+    background-color: #1C1656;
+    padding: 10% 5% 10% 5%;
+}
+#gamedown img
+{
+    border-radius: 10px;
+    width: 90%;
+    height: 90%;
+    margin: 0% 5% 0% 5%;
+}
+#gamedown a
+{
+    margin: 0% 5% 0% 5%;
+    color: white;
+    width: 90%;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    background: rgb(174,18,252);
+    background: linear-gradient(90deg, rgba(174,18,252,1) 0%, rgba(107,66,252,1) 100%);
+}
+#gamedown tr,td,table
+{
+    text-align: justify;
+    font-size: medium;
+    border-bottom: 1px solid #9672FA;
+    border-spacing: 2%;
+}
+#comment
+{
+    border-top: 1px solid #9672FA;
+    border-right: 1px solid #9672FA;
+    padding: 2% 2% 2% 2%;
+}
+#score_col {
+    margin-top: 5vh;
+    font-size: 50px;
+    border-radius: 50px;
+    border: 15px solid white;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+}
+#user_cmt img
+{
+    shape-outside: circle(50%);
+}
+#moregames
+{
+  border-top: 1px solid #9672FA; 
+  padding: 2% 2% 2% 2%;
+}
+#gameLogo {
+    background-color: #231E57;
+    border-radius: 10px;
+    max-width: 100%;
+    height: 8vh;
+}

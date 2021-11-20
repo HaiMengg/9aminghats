@@ -1,0 +1,218 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(/resources/font/cnttqn.net_BreeSerif.otf);
+}
+body {
+    font-family: BreeSerif;
+    background-color: #19164F;
+}
+#content {
+    padding: 0 1vw 4vh 1vw;
+}
+#sidebar {
+    background-color: #17144B;
+    border-radius: 40px;
+    padding: 1%;
+    padding-top: 1%;
+}
+#sidebar_content {
+    background-color: #19164F; 
+    border-radius: 40px;
+    padding: 5%;
+    padding-top: 1%;
+}
+#home_button {
+    margin-bottom: 1vh;
+}
+#home_button a {
+    color: white;
+    font-size: 25px;
+}
+#other_pages {
+    margin-bottom: 2vh;
+}
+#other_pages a {
+    padding-left: 15%;
+    line-height: 200%;
+    font-size: 15px;
+}
+#about_us {
+    text-align: center;
+}
+#about_us a {
+    border-radius: 40px;
+    padding: 4%;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-image: url("../resources/Homepage/main_nav/others/aboutus.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: inline-block;
+}
+#category {
+    font-size: 11px;
+    margin-top: 3vh;
+    padding: 5.5%;
+    background-color: #19164F; 
+    border-radius: 40px;
+}
+#category img {
+    width: 1.5vw;
+    height: 3vh
+}
+.sticky {
+    width: 23vw; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+}
+a, p {
+    color: white;
+    text-decoration: none;
+}
+#mainpanel {
+    border-radius: 40px;
+    padding: 1.5%; 
+    padding-top: 1%;
+}
+#search_bar {
+    display: inline-block;
+}
+#search_bar input {
+    height: 100%;
+    border-radius: 8px;
+    border: 0px;
+    background-color: #231B6B;
+    color: white;
+}
+#search_bar a{
+    border-radius: 8px;
+}
+#user_buttons {
+    display: inline-block;
+}
+#user_buttons_anon {
+    border-radius: 15px;
+    background-image: linear-gradient(to right, #ab14fc , #713efc);
+}
+#main_content {
+    margin-top: 2vh;
+}
+#banner {
+    margin-bottom: 2vh;
+}
+#gameLogo {
+    cursor: pointer;
+    background-color: #231E57;
+    border-radius: 10px;
+    max-width: 100%;
+    height: 12vh;
+}
+#newGames, #freeGames, #recommendedGames, #moreGames {
+    margin-bottom: 2vh;
+    padding: 1%;
+}
+#gameCarouselNew, #gameCarouselFree, #gameCarouselRecom, #gameCarouselMore {
+    background-color: #1C1656;
+    border-radius: 15px;
+}
+#categoryRing {
+    max-width: 100%;
+    height: 5vh
+}
+.carousel-control-prev,
+.carousel-control-next{
+    width: 2vw;
+}
+#topbar_mobile {
+    position: fixed;
+    display: block;
+    background-color: #1C1656;
+    top:0;
+}
+#topbar_mobile img {
+    max-width: auto;
+    height: 7vh;
+}
+#sidebar_mobile {
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top:0;
+    left:0;
+}
+#sidebar_mobile_col {
+    padding: 3%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
+}
+#sidebar_mobile_2 {
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top:0;
+    left:0;
+}
+#sidebar_mobile_2_col {
+    padding: 3%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
+}
+#sidebar_mobile_3 {
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.3); 
+    visibility: hidden;
+    z-index: 2;
+    position: fixed;
+    transition: 0.2s;
+    display: block;
+    top: 0;
+    padding-left: 61vw;
+}
+#sidebar_mobile_3_col {
+    padding: 6%;
+    background-color: #19164F;
+    width: 40vw;
+    height: 100vh;
+}
+#c {
+    border: 5px solid orangered;
+    padding: 2%;
+}
+
+@media only screen and (min-width: 2143px) {
+    p, a, h1 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 1759px) {
+    #main_content {
+        margin-top: 5vh;
+    }
+    p, a, h1 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    #main_content {
+        margin-top: 10vh;
+    }
+    p, a, h1 {
+        font-size: 20px;
+    }
+    #gamelogo img {
+        height: 6vh;
+    }
+}
