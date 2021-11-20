@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/gameinfo_MH.css">
     </head>
 
-    <body onload="Sidebar()" onresize="Sidebar()">
+    <body onload="Sidebar(); UserButtons();" onresize="Sidebar()">
         <!--Connect to mySQL database-->
         <?php chdir($_SERVER["DOCUMENT_ROOT"] . "/") ?>
         <?php include "php/php_functions.php"; 
@@ -107,12 +107,19 @@
                         <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="HideSidebarMobi('sidebar_mobile_3')">Đóng</button>
                     </div>
                     <div class="row" style="margin-top: 2vh"><input type="text" name="search" size="20" placeholder="Tìm kiếm..."/></div>
-                    <div class="row align-items-center" style="margin-top: 3vh">
-                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Đăng nhập</button>
+                    <div id="sidebar_mobile_3_logInOut">
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signin.php'">Đăng nhập</button>
+                        </div>
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signup.php'">Đăng kí</button>
+                        </div>
                     </div>
-                    <div class="row align-items-center" style="margin-top: 3vh">
-                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Đăng kí</button>
-                    </div>    
+                    <div id="sidebar_mobile_3_userprofile" style="display: none;">
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Thông tin người dùng</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,7 +200,14 @@
                         </div>
                         <div class="col-2 text-end">
                             <div id="user_buttons">
-                                <a href="#"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a>
+                                <div class="row align-items-center" id="user_buttons_anon">
+                                    <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="pages/signin.php">Đăng nhập</a></div>
+                                    <div class="col-6 text-center"><a href="pages/signup.php">Đăng kí</a></div>
+                                </div>
+                                <div class="row align-items-center" id="user_button_user" style="display: none">
+                                    <div class="col-6 text-center"><p id="user_button_username"></p></div>
+                                    <div class="col-6 text-center"><a href="" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -305,10 +319,10 @@
                                         </div>
                                     </div>
                                     <div class="col-8" id="moregames">
-                                        <div class="row align-items-center" id="moreGames">
+                                        <div class="row align-items-center" id="moreGamesRow">
                                             <script>
                                                 var foundMoreGame = <?php echo json_encode($foundMoreGame) ?>;
-                                                DisplayGames("moreGames", foundMoreGame);
+                                                DisplayGames("moreGamesRow", foundMoreGame);
 
                                                 DisplaySingleData("score", "<?php echo $gameScore ?>");
                                                 ScoreBackground();

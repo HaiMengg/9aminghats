@@ -1,6 +1,5 @@
 function Sidebar() {
     var screenWidth = window.innerWidth;
-    console.log(screenWidth);
     var sidebar = document.getElementById("sidebar_js");
     var sidebarInner = document.getElementById("sidebar");
     var mainPanel = document.getElementById("mainpanel");
