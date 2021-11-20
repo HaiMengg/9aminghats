@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title>Trang chủ | 9amingHats</title>
+        <!-- Cập nhật tên game lên title được không? -->
+        <title>Tên game</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Thêm logo trên tab -->
@@ -9,14 +10,16 @@
         <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
         <link rel="manifest" href="resources/favicon/site.webmanifest">
-        <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
-        <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
+        <script type="text/javascript" src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
+        <script type="text/javascript" src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
         <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
         <link rel="stylesheet" href="css/style_AK.css">
+        <link rel="stylesheet" href="css/gameinfo_MH.css">
     </head>
 
-    <body onload="Sidebar(); UserButtons();" onresize="Sidebar()" id="index_body">
+    <body onload="Sidebar()" onresize="Sidebar()">
         <!--Connect to mySQL database-->
+        <?php chdir($_SERVER["DOCUMENT_ROOT"] . "/") ?>
         <?php include "php/php_functions.php"; 
             $conn = ConnectDB();
         ?>
@@ -104,19 +107,12 @@
                         <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="HideSidebarMobi('sidebar_mobile_3')">Đóng</button>
                     </div>
                     <div class="row" style="margin-top: 2vh"><input type="text" name="search" size="20" placeholder="Tìm kiếm..."/></div>
-                    <div id="sidebar_mobile_3_logInOut">
-                        <div class="row align-items-center" style="margin-top: 3vh">
-                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signin.php'">Đăng nhập</button>
-                        </div>
-                        <div class="row align-items-center" style="margin-top: 3vh">
-                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signup.php'">Đăng kí</button>
-                        </div>
+                    <div class="row align-items-center" style="margin-top: 3vh">
+                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Đăng nhập</button>
                     </div>
-                    <div id="sidebar_mobile_3_userprofile" style="display: none;">
-                        <div class="row align-items-center" style="margin-top: 3vh">
-                            <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Thông tin người dùng</button>
-                        </div>
-                    </div>
+                    <div class="row align-items-center" style="margin-top: 3vh">
+                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Đăng kí</button>
+                    </div>    
                 </div>
             </div>
         </div>
@@ -197,45 +193,125 @@
                         </div>
                         <div class="col-2 text-end">
                             <div id="user_buttons">
-                                <div class="row align-items-center" id="user_buttons_anon">
-                                    <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="pages/signin.php">Đăng nhập</a></div>
-                                    <div class="col-6 text-center"><a href="pages/signup.php">Đăng kí</a></div>
-                                </div>
-                                <div class="row align-items-center" id="user_button_user" style="display: none">
-                                    <div class="col-6 text-center"><p id="user_button_username"></p></div>
-                                    <div class="col-6 text-center"><a href="" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
-                                </div>
+                                <a href="#"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a>
                             </div>
                         </div>
                     </div>
                     <div class="row" id="main_content">
                         <?php
-                            $foundNewGame = FindGames(1, 6);        //Get new games
-                            $foundFreeGame = FindGames(2, 6);       //Get free games
-                            $foundRecomGame = FindGames(3, 6);      //Get recommended games
+                            $gameName = GetGameData("NAME", 12);
+                            $gameImage = GetGameImage("resources/DB_GAMES/VR Kanojo/");
+                            $gameYoutubeLink = GetGameData("TRAILER", 12);
+                            $gameDev = GetGameData("DEVELOPER", 12);
+                            $gamePub = GetGameData("PUBLISHER", 12);
+                            $gameGenre = GetGameData("GENRE", 12);
+                            $gameAge = GetGameData("AGE", 12);
+                            $gameLogo = GetGameLogo("resources/DB_GAMES/VR Kanojo/");
+                            $gameCost = GetGameData("PRICE", 12);
+                            $gameScore = GetGameData("METACRITS", 12);
+                            $foundMoreGame = FindGames(3, 6);      //Get more games
                         ?>
-                        
                         <div class="col-12">
-                            <div class="row" id="banner">
-                                <img id="banner_js" src="resources/Homepage/banner.png">
+                            <div>
+                                <div class="row align-items-center">
+                                    <!--Collum này của slideshow game-->
+                                    <div class="col-9" style="padding: 3%; max-height:1050px; min-height: min-content">
+                                        <div class="row"><b><p id="name"></p></b></div>
+                                        <div class="row">
+                                            <div class="col-12 text-center" id="slideshow">
+                                                <script>
+                                                    var gameImage = <?php echo json_encode($gameImage) ?>;
+                                                    var gameYoutubeLink = "<?php echo $gameYoutubeLink ?>";
+                                                    var carouselLocation = document.getElementById("slideshow");
+                                                    carouselLocation.appendChild(CreateCarouselSingle(gameImage.length, "gameCarousel", gameImage, gameYoutubeLink));
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Collum này là phần thông tin và nút tải -->
+                                    <div class="col-3" style="padding: 10% 3% 10% 3%">
+                                       <div class="row">
+                                            <div class="col-12" id="gamedown">
+                                                <div class="row">
+                                                    <img src="" id="logo">
+                                                </div>
+                                                <div class="row" style="margin-top: 10%; margin-bottom: 5%">
+                                                    <b><p id="price">Cost</p></b>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <a href="https://www.youtube.com/watch?v=1yXZIFYv4SE&list=TLPQMTMxMTIwMjHQ9msIZxkz-Q&index=26" target="_blank" id="price_2"><b></b></a>
+                                                </div>
+                                                <div class="row" style="margin: 30% 5% 10% 5%" id="other_game_info">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <p>Nhà phát triển</p>
+                                                            <p id="dev"></p>
+                                                        </div>
+                                                        <div class="row" style="border-top: 2px solid rgb(174,18,252);">
+                                                            <p>Nhà phát hành</p>
+                                                            <p id="pub"></p>
+                                                        </div>
+                                                        <div class="row" style="border-top: 2px solid rgb(174,18,252);">
+                                                            <p>Thể loại</p>
+                                                            <p id="genre"></p>
+                                                        </div>
+                                                        <div class="row" style="border-top: 2px solid rgb(174,18,252);">
+                                                            <p>Độ tuổi cho phép</p>
+                                                            <p id="age"></p>
+                                                        </div>
+                                                    </div>
+                                                    <script>
+                                                        DisplaySingleData("name", "<?php echo $gameName ?>");
+                                                        DisplaySingleData("dev", "<?php echo $gameDev ?>");
+                                                        DisplaySingleData("pub", "<?php echo $gamePub ?>");
+                                                        DisplaySingleData("genre", <?php echo json_encode($gameGenre) ?>);
+                                                        DisplaySingleData("age", "<?php echo $gameAge ?>");
+                                                        DisplaySingleData("price", "<?php echo $gameCost ?>");
+                                                        DisplayPurchase();
+
+                                                        var gameLogo = document.getElementById("logo");
+                                                        gameLogo.src="<?php echo $gameLogo ?>";
+                                                    </script>
+                                                </div>
+                                            </div>
+                                       </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row align-items-center" id="newGames">
-                                <script>
-                                    var foundNewGame = <?php echo json_encode($foundNewGame) ?>;
-                                    DisplayGames("newGames", foundNewGame);
-                                </script>
+                            <!-- Mô tả game -->
+                            <div id="detail">
+                                <div class="row">
+                                    <h3><b>Mô tả game</b></h3>
+                                    <hr>
+                                    <p>Thông tin của game</p>
+                                    <br>
+                                    <h5>Cấu hình</h5>
+                                    <p>Thông tin cấu hình máy</p>
+                                </div>
                             </div>
-                            <div class="row align-items-center" id="freeGames">
-                                <script>
-                                    var foundFreeGame = <?php echo json_encode($foundFreeGame) ?>;
-                                    DisplayGames("freeGames", foundFreeGame);
-                                </script>
-                            </div>
-                            <div class="row align-items-center" id="recommendedGames">
-                                <script>
-                                    var foundRecomGame = <?php echo json_encode($foundRecomGame) ?>;
-                                    DisplayGames("recommendedGames", foundRecomGame);
-                                </script>
+                            <!-- comment và Games khác -->
+                            <div>
+                                <div class="row">
+                                    <div class="col-4 text-center" id="comment">
+                                        <h4><b>Điểm số Metacritics</b></h4>
+                                        <div>
+                                            <div class="col-12 text-center" id="score_col">
+                                                <b><p id="score"></p></b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8" id="moregames">
+                                        <div class="row align-items-center" id="moreGames">
+                                            <script>
+                                                var foundMoreGame = <?php echo json_encode($foundMoreGame) ?>;
+                                                DisplayGames("moreGames", foundMoreGame);
+
+                                                DisplaySingleData("score", "<?php echo $gameScore ?>");
+                                                ScoreBackground();
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
