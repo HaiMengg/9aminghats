@@ -1,0 +1,111 @@
+@font-face {
+    font-family: mainFont;
+    src: url(../resources/fonts/BreeSerif.otf);
+}
+body {
+    background-image: url(../resources/Library/bg-4.png);
+    background-repeat: repeat;
+    background-size: cover;
+    padding-top: 0px;
+    background-color: #1F005B;
+    border-radius: 20px;
+    font-family: mainFont;
+}
+#main {
+    position: relative;
+    background-color: #1C1656;
+    width: 1200px;
+    height: 695px;
+    border-radius: 35px;
+    margin: 2.3% auto auto auto;
+}
+
+/* Thanh công cụ */
+#left-panel {
+    text-align: center;
+    padding-top: 6%;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+#selection-tab {
+    font-size: 25px;
+    padding-top: 45px;
+}
+.tab {
+    margin-top: 15px;
+    margin-bottom: 16px;
+}
+.select:hover {
+    color: white;
+}
+#log-out {
+    margin-top: 20%;
+}
+#btn {
+    text-decoration: none;
+    font-size: 22px;
+    padding: 9px 45px 9px 45px;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(to right, #AE12FC, #6B42FC);
+    border-radius: 25px;
+}
+
+/* Khu vực chính */
+#main-panel {
+    width: 730px;
+    height: 635px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 35px;
+    border-radius: 35px;
+    overflow-y: scroll;
+    background-color: #1E175C;
+    box-shadow: 0px 0px 5px 0.5px #1A0030;
+}
+/* Ẩn thanh cuộn */
+#main-panel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hiển thị game */
+.game-row {
+    margin-bottom: 20px;
+}
+.game {
+    text-align: center;
+    margin-top: 20px;
+}
+.game-icon {
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: auto;
+    width: 300px;
+    height: 100px;
+    border-radius: 20px;
+}
+.logo-rectangle {
+    width: 75%;
+} 
+.logo-square {
+    height: 100%;
+}
+.game-name {
+    font-size: 18px;
+    margin: 10px auto 15px auto;
+    color: white;
+}
+#download-btn {
+    text-decoration: none;
+    font-size: 15px;
+    padding: 9px 45px 9px 45px;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(to right, #AE12FC, #6B42FC);
+    border-radius: 25px;
+}
