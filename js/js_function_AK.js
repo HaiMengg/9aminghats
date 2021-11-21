@@ -215,6 +215,10 @@ function GetCookie(cName) {
     })
     return res;
 }
+function RemoveCookie(cName) {
+    document.cookie = cName+'=; Max-Age=-99999999;';
+    window.location.href = "";
+}
 
 function ProcessLoginInfo() {
     var data = $("#login_form").serializeArray();
@@ -355,6 +359,67 @@ function ProcessRegisterInfo() {
     }
 }
 
+function ProcessPassword() {
+    var data = $("#password_form").serializeArray();
+    var email = Object.values(data[0]);      //Output: Array = ["email", ""]
+    var username = Object.values(data[1] || ""); 
+    var passwordNotif = document.getElementById("password_notif");
+    var allowed = true;
+
+    if (email[1].includes("@") !== true || email[1].includes(".") !== true) {
+        passwordNotif.innerHTML += "* Email được nhập vào không đúng định dạng<br>";
+        passwordNotif.style = "color: red; display: block";
+        allowed = false;
+    }
+    if (allowed === true) {
+        var formData = new FormData();
+        formData.append("mode", "resetPass");
+        formData.append("emailResetPass", email[1]);
+        if (username[1] !== undefined) formData.append("userResetPass", username[1]);
+        else formData.append("userResetPass", "");
+
+        $.ajax({
+            url: 'php/account_process.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(result){
+                var resultArray = JSON.parse(result);
+                var stateResetPass = resultArray.stateResetPass;
+                switch(stateResetPass) {
+                    case 1:
+                        passwordNotif.innerHTML = "* Một email thiết lập lại mật khẩu cho tài khoản với địa chỉ email " + email[1] + " đã được gửi đi. Bạn vui lòng kiểm tra mail";
+                        passwordNotif.style = "color: green; display: block";
+                        var passwordResetForm = document.getElementById("passwordreset_form");
+                        passwordNotif.style = "display: none";
+                        break;
+                    case 2:
+                        if (username[1] !== undefined) {
+                            passwordNotif.innerHTML = "* Tài khoản với email " + email[1] + " và tên đăng nhập " + username[1] + " không tồn tại. Bạn vui lòng check lại thông tin";
+                        }
+                        else passwordNotif.innerHTML = "* Tài khoản với email " + email[1] + " không tồn tại. Bạn vui lòng check lại thông tin";
+                        passwordNotif.style = "color: red; display: block";
+                        break;
+                }
+            }
+        })
+    }
+}
+
+function CheckLogInState(mode) {
+    if (GetCookie("username") !== "") {
+        window.location.href = "";
+    }
+    else {
+        if (mode === "login") {
+            window.location.href = "pages/signin.php";
+        }
+        else {
+            window.location.href = "pages/signup.php";
+        }
+    }
+}
 
 function UserButtons() {
     var anonButtons = document.getElementById("user_buttons_anon");
@@ -370,58 +435,4 @@ function UserButtons() {
         sideBar3AnonButtons.style = "display: none";
         sideBar3UserButton.style -= "display: none";
     }
-    else if (divID.includes("recommended")) {
-        categoryP.innerHTML += " GAME HAY";
-        carouselID = "gameCarouselRecom";
-    }
-    else if (divID == "moreGames") {
-        categoryP.innerHTML += " NHỮNG GAME HAY KHÁC";
-        carouselID = "gameCarouselMore";
-    }
-    var carouselLocation = document.getElementById(divID);
-    carouselLocation.appendChild(categoryP);
-    carouselLocation.appendChild(CreateCarousel(gameDataArray[0].length, carouselID, gameDataArray));    //Either gameDataArray[0] or gameDataArray[1] for param 1, since both
-                                                                                                                    //have the same length
-}
-
-function DisplaySingleData(divID, gameData) {
-    var div = document.getElementById(divID);
-    if (divID != 'genre') div.innerHTML = gameData;
-    else {
-        var dataString = gameData.join(", ");
-        div.innerHTML = dataString;
-    }
-}
-
-function DisplayPurchase() {
-    var price = document.getElementById("price");
-    var priceString = price.innerHTML;
-    var priceInt = 0;
-    var purchaseButton = document.getElementById("price_2");
-    if (price.innerHTML == "FREE") {
-        purchaseButton.innerText = "Lưu vào thư viện";
-    }
-    else {
-        purchaseButton.innerText = "Mua game";
-        priceString = priceString.replace(" VND", "");
-        priceString = priceString.replace(".", "");
-        priceInt = parseInt(priceString);           //Do something with this later, like transmit it somewhere for calculation
-    }
-}
-
-function DataToPHP(gameName, gameNum) {
-    var formData = new FormData();
-    formData.append("name", gameName);
-    formData.append("num", gameNum);
-
-    $.ajax({
-        url: 'php/php_functions.php',
-        data: formData,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function(){
-            window.location.href = "resources/DB_GAMES/" + gameName + "/gamepage.php";
-        }
-    })
 }
