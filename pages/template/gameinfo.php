@@ -51,7 +51,7 @@
                         <a href="#"><b>Điều khoản và Dịch vụ</b></a>
                     </div>
                     <div class="row align-items-center text-center" style="margin-top: 1vh">
-                        <a style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" href="AboutUs.html"><b>Về chúng tôi</b></a>
+                        <a style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" href="pages/aboutus2.html"><b>Về chúng tôi</b></a>
                     </div>
                     <div class="row align-items-center" style="margin-top: 3vh">
                         <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="SidebarSwitch()"><b>Thể loại</b></button>
@@ -109,10 +109,10 @@
                     <div class="row" style="margin-top: 2vh"><input type="text" name="search" size="20" placeholder="Tìm kiếm..."/></div>
                     <div id="sidebar_mobile_3_logInOut">
                         <div class="row align-items-center" style="margin-top: 3vh">
-                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signin.php'">Đăng nhập</button>
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="CheckLogInState('login')">Đăng nhập</button>
                         </div>
                         <div class="row align-items-center" style="margin-top: 3vh">
-                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="location.href='pages/signup.php'">Đăng kí</button>
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="CheckLogInState('signin')">Đăng kí</button>
                         </div>
                     </div>
                     <div id="sidebar_mobile_3_userprofile" style="display: none;">
@@ -147,7 +147,7 @@
                                     <a href="#"><b>Điều khoản và Dịch vụ</b></a>
                                 </div>
                                 <div id="about_us">
-                                    <a href="AboutUs.html"><b>Về chúng tôi</b></a>
+                                    <a href="pages/aboutus2.html"><b>Về chúng tôi</b></a>
                                 </div>
                             </div>
                             <div id="category">
@@ -201,8 +201,8 @@
                         <div class="col-2 text-end">
                             <div id="user_buttons">
                                 <div class="row align-items-center" id="user_buttons_anon">
-                                    <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="pages/signin.php">Đăng nhập</a></div>
-                                    <div class="col-6 text-center"><a href="pages/signup.php">Đăng kí</a></div>
+                                    <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="javascript:CheckLogInState('login')">Đăng nhập</a></div>
+                                    <div class="col-6 text-center"><a href="javascript:CheckLogInState('signin')">Đăng kí</a></div>
                                 </div>
                                 <div class="row align-items-center" id="user_button_user" style="display: none">
                                     <div class="col-6 text-center"><p id="user_button_username"></p></div>

@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="vi">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Xác nhận thanh toán</title>
-
+        <base href="https://high-man.com/">
+        <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="resources/favicon/site.webmanifest">
+        <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
+        <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/Payment_style_GH.css">
+        <link rel="stylesheet" href="css/payment_style_GH.css">
 
-        <script src="../js/Payment_GH.js" defer></script>
+        <script src="js/payment_GH.js" defer></script>
     </head>
     <body>
         <main class="container-fluid">
             <div id="main">
                 <div class="row">
                     <a id="arrow" href="https://www.youtube.com/watch?v=b41yyHH6Cic">
-                        <img src="../resources/Payment/arrow.png">
+                        <img src="resources/Payment/arrow.png">
                     </a>
                 </div>
                 <div class="row" id="payment-heading">
@@ -63,7 +68,7 @@
                         <div class="col-sm-6 input" id="left-info">
                             <div class="row">
                                 <div class="method-btn" id="master" onclick="chooseCardType(this)">
-                                    <img src="../resources/Payment/master-card.png" width="50%" id="master-card">
+                                    <img src="resources/Payment/master-card.png" width="50%" id="master-card">
                                 </div>
                             </div>
                             <div class="row">
@@ -84,7 +89,7 @@
                         <div class="col-sm-6 input" id="right-info">
                             <div class="row">
                                 <div class="method-btn" id="visa" onclick="chooseCardType(this)">
-                                    <img src="../resources/Payment/visa.png" width="50%" id="visa-card">
+                                    <img src="resources/Payment/visa.png" width="50%" id="visa-card">
                                 </div>
                                 <div id="name">
                                     <p class="instruct"><strong>Tên chủ thẻ</strong></p>
