@@ -27,10 +27,15 @@
                 <div class="row" style="margin: 5% 0% 5% 0%"><h1><b>Lấy Lại Mật Khẩu</b></h1></div>
                 <div class="row" style="margin: 5% 0% 5% 0%">
                     <form>
+                        <h4><b>Nhập mật khẩu mới</b></h4>
                         <div class="input-container input row">
-                        <input type="email" name="email" placeholder="Nhập vào email bạn đã đăng ký" style="width: 98%;"/>
+                            <input type="password" name="password" placeholder="Mật khẩu của bạn" style="width: 98%;"/>
                         </div>
-                        <button type="submit" class="sub">Gửi</button>
+                        <h4><b>Xác nhận mật khẩu</b></h4>
+                        <div class="input-container input row">
+                            <input type="password" name="password_reconfirm" placeholder="Nhập lại mật khẩu" style="width: 98%;"/>
+                        </div>
+                        <button type="submit" class="sub">Xác nhận</button>
                     </form>
                 </div>
             </div>
