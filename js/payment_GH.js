@@ -63,6 +63,25 @@ function chooseCardType(type) {
     }
 }
 
+function confirmWalletPurchase() {
+    var walletMainInfo = document.getElementById("w-main-info");
+    walletMainInfo.innerHTML = "Thanh toán thành công";
+    setTimeout(function(){
+        window.location.href = "index.php";
+    }, 1000);
+}
+
+function confirmCardPurchase() {
+    var cardMainInfo = document.getElementById("c-main-info");
+    cardMainInfo.innerHTML = "Đang chờ đợi giao dịch từ người dùng...";
+    setTimeout(function(){
+        cardMainInfo.innerHTML = "Giao dịch thành công";
+        setTimeout(function(){
+            window.location.href = "index.php";
+        }, 1000);
+    }, 2000);
+}
+
 // Định dạng số thẻ ngân hàng
 document.getElementById('numb').addEventListener('input', function (cNumber) {
     var validForm = cNumber.target.value.length;

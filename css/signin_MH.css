@@ -1,10 +1,14 @@
 html{
-    height: 100%;
-    width: 98%;
+    height: 100vh;
+    width: 98vw;
 }
 @font-face {
     font-family: BreeSerif;
     src: url(../resources/fonts/cnttqn.net_BreeSerif.otf);
+}
+@font-face{
+    font-family:BreeSeif_N;
+    src: url(../resources/fonts/BreeSerif.otf);
 }
 input[type=checkbox]
 {
@@ -39,6 +43,7 @@ body
 #content
 {
     padding: 5% 8% 5% 5%;
+    height: 98vh;
 }
 .input
 {
