@@ -435,6 +435,7 @@ function UserButtons() {
         sideBar3AnonButtons.style = "display: none";
         sideBar3UserButton.style -= "display: none";
     }
+<<<<<<< HEAD
 }
 
 function MoneyIntToStr(moneyInt, addCurrency = "") {
@@ -464,4 +465,6 @@ function MoneyIntToStr(moneyInt, addCurrency = "") {
     
     if (addCurrency !== "") moneyStr += " " + addCurrency;
     return moneyStr;
+=======
+>>>>>>> 83172725393b275ee3143ccf8a5dd8eea002749a
 }

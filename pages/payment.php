@@ -13,41 +13,11 @@
         <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="css/payment_style_GH.css">
-    </head>
 
-    <body>
-        <!--Connect to database-->
-        <?php 
-            chdir($_SERVER['DOCUMENT_ROOT'] . "/");
-            include "php/php_functions.php";
-            $conn = ConnectDB();
-            $conn->set_charset("utf8mb4");
-        ?>
-        
-        <!--Use custom JS functions-->
-        <script type="text/javascript" src="js/js_function_AK.js"></script>
         <script src="js/payment_GH.js" defer></script>
-
+    </head>
+    <body>
         <main class="container-fluid">
-
-            <?php
-                $purchaseToken = $_GET['token'];
-                $lookUpToken = FetchFromDB(ConnectDB(), "SELECT * FROM DB_PURCHASE WHERE `TOKEN`='$purchaseToken'")->num_rows;
-
-                $gameNumcounter = $_GET['gamenum'];
-                $gameMoney = CalculateMoney($gameNumcounter, $_COOKIE['username']);
-            ?>
-            <script>
-                var purchaseToken = "<?php echo $purchaseToken ?>";
-                var lookUpToken = "<?php echo $lookUpToken ?>";
-                if (lookUpToken == 0) {
-                    document.body.innerHTML = "<p style='color: red;'>Token không hợp lệ. Quá trình giao dịch đã bị dừng lại</p>";
-                }
-
-                var gameMoney = <?php echo $gameMoney ?>;
-                var gameNumcounter = "<?php echo $gameNumcounter ?>";
-            </script>
-
             <div id="main">
                 <div class="row">
                     <a id="arrow" href="https://www.youtube.com/watch?v=b41yyHH6Cic">
@@ -75,21 +45,21 @@
                             </div>
                         </div>
                         <div class="choice-list" id="methods">
-                            <div class="choice" id="wallet" onclick="chooseWallet(); CheckFirst('wallet')">Ví điện tử</div>
-                            <div class="choice" id="card" onclick="chooseCard(); CheckFirst('card')">Thẻ ngân hàng</div>
+                            <div class="choice" id="wallet" onclick="chooseWallet()">Ví điện tử</div>
+                            <div class="choice" id="card" onclick="chooseCard()">Thẻ ngân hàng</div>
                         </div>
                     </div>
                 </div>
                 <div class="row information" id="wallet-info">
                     <div id="w-main-info">
-                        <div class="info" id="w-main-info-wallet">
-                            Tài khoản hiện có: 
+                        <div class="info">
+                            Tài khoản hiện có: 1.000.000
                         </div>
-                        <div class="info" id="w-main-info-cost">
-                            Giá game: 
+                        <div class="info">
+                            Giá game: 500.000
                         </div>
-                        <div class="info" id="w-main-info-change">
-                            Số dư: 
+                        <div class="info">
+                            Số dư: 500.000
                         </div>
                     </div>
                 </div>
@@ -104,7 +74,7 @@
                             <div class="row">
                                 <div id="card-numb">
                                     <p class="instruct"><strong>Số thẻ</strong></p>
-                                    <input class="value" id="numb" type="text" maxlength="19" placeholder="XXXX XXXX XXXX XXXX">
+                                    <input class="value" id="numb" type="text" maxlength="19" placeholder="1234 5678 9283 1231">
                                 </div>
                                 <div id="xpire-date">
                                     <p class="instruct"><strong>Ngày hết hạn</strong></p>
@@ -134,62 +104,10 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <a id="conf-btn" style="cursor: pointer;">
+                    <a id="conf-btn" href="#">
                         Xác nhận
                     </a>
                 </div>
-
-                <script>
-                    var userWallet = document.getElementById("w-main-info-wallet");
-                    userWallet.innerHTML += MoneyIntToStr(gameMoney["userWallet"], "đ");
-                    var gamePrice = document.getElementById("w-main-info-cost");
-                    gamePrice.innerHTML += MoneyIntToStr(gameMoney["gamePrice"], "đ"); 
-                    var change = document.getElementById("w-main-info-change");
-                    change.innerHTML += MoneyIntToStr(gameMoney["remainingMoney"]);
-
-                    function PostPurchase(type) {
-                        var formData = new FormData();
-                        formData.append("gameNC", gameNumcounter);
-                        formData.append("userBalanceAfter", gameMoney["remainingMoney"]);
-                        formData.append("purchaseType", type);
-                        formData.append("purchaseToken", purchaseToken);
-
-                        $.ajax ({
-                            url: 'php/account_process.php',
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            type: 'POST',
-                            success: function(result){
-                                console.log(result);
-                            }
-                        })
-                    }
-                    function CheckFirst(type) {
-                        var confBtn = document.getElementById("conf-btn");
-                        if (type === "wallet") {
-                            if (gameMoney["result"] === 2) {
-                                confBtn.style.color = "red";
-                                confBtn.innerHTML = "Bạn không đủ tiền để thanh toán";
-                                confBtn.style.cursor = "default";
-                            }
-                            else {
-                                ChangeConfButton(type);
-                                confBtn.style.cursor = "pointer";
-                            }
-                        }
-                        else {
-                            confBtn.style.color = "white";
-                            confBtn.innerHTML = "Xác nhận";
-                            confBtn.style.cursor = "pointer";
-                            ChangeConfButton(type);
-                        }
-                    }
-                    function ChangeConfButton(type) {
-                        if (type === "wallet") document.getElementById("conf-btn").setAttribute("onclick", "confirmWalletPurchase(); PostPurchase(type)");
-                        else document.getElementById("conf-btn").setAttribute("onclick", "confirmCardPurchase(); PostPurchase(type)");
-                    }
-                </script>
             </div>
         </main>
     </body>
