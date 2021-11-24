@@ -465,3 +465,14 @@ function MoneyIntToStr(moneyInt, addCurrency = "") {
     if (addCurrency !== "") moneyStr += " " + addCurrency;
     return moneyStr;
 }
+
+function TermsPanCheck() {
+    var termsModal = document.getElementById("modal_terms");
+    if (termsModal.style.display == "none" || termsModal.ariaHidden == "true") {
+        var sharpPos = window.location.href.indexOf("#");
+        if (sharpPos !== -1) {
+            var newURL = window.location.href.substring(0, sharpPos);
+            history.pushState("", "", newURL);
+        }
+    }
+}

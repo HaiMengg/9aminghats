@@ -246,9 +246,9 @@
         $prefArray = RemoveDupsFromArr($prefArray);
 
         //Remove empty string at start of each array
-        array_shift($prefArray);
-        array_shift($historyNameArray);
-        array_shift($historyDateArray);
+        if ($prefArray[0] === "") array_shift($prefArray);
+        if ($historyNameArray[0] === "") array_shift($historyNameArray);
+        if ($historyDateArray[0] === "") array_shift($historyDateArray);
 
         //Convert arrays into string
         $prefArray = implode("-", $prefArray);
