@@ -124,6 +124,26 @@
             </div>
         </div>
 
+        <div class="modal fade" id="nologged_modal" tabindex="-1" role="dialog" aria-labelledby="nologged_modal_title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color: black">Đã xảy ra lỗi</h5>
+                        <button data-bs-dismiss="modal" aria-label="Close" style="background-color: white; border: 0;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="color: black">Bạn phải đăng nhập để tiến hành mua/tải game!</p> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" onclick="CheckLogInState('login')">Đăng nhập ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid" id="content_js">
             <div class="row">
                 <div class="col-3" style="padding: 1.5%; padding-top: 1%" id="sidebar_js">
@@ -224,7 +244,10 @@
                             $gameLogo = GetGameLogo($gameDir);
                             $gameCost = GetGameData("PRICE", $gameNumber);
                             $gameScore = GetGameData("METACRITS", $gameNumber);
+                            $gameTxt = GetGameTxt($gameDir);
                             $foundMoreGame = FindGames(3, 6);      //Get more games
+
+                            $purchasableGame = PurchasableGame($_COOKIE['username'], $gameName);
                         ?>
                         <div class="col-12">
                             <div>
@@ -254,7 +277,26 @@
                                                     <b><p id="price">Cost</p></b>
                                                 </div>
                                                 <div class="row text-center">
-                                                    <a href="https://www.youtube.com/watch?v=1yXZIFYv4SE&list=TLPQMTMxMTIwMjHQ9msIZxkz-Q&index=26" target="_blank" id="price_2"><b></b></a>
+                                                    <a style="cursor: pointer;" target="_blank" id="price_2"><b></b></a>
+                                                    <script>
+                                                        function UpdateHashToHref() {
+                                                            var hash = "<?php echo HashString() ?>";
+                                                            window.location.href = priceHref + "&token=" + hash;
+                                                        }
+                                                        var priceHref = "pages/payment.php?gamenum=" + "<?php echo $gameNumber ?>";
+                                                        var price2 = document.getElementById("price_2");
+                                                        if (GetCookie("username") !== "") {
+                                                            var purchasableGame = "<?php echo $purchasableGame ?>";
+                                                            if (purchasableGame === 0) {
+                                                                price2.setAttribute("onclick", "UpdateHashToHref();");
+                                                            }
+                                                            else price2.setAttribute("onclick", "javascript:alert('Bạn đã mua game này rồi')");
+                                                        }
+                                                        else {
+                                                            price2.setAttribute("data-bs-toggle", "modal");                                         
+                                                            price2.setAttribute("data-bs-target", "#nologged_modal");
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <div class="row" style="margin: 30% 5% 10% 5%" id="other_game_info">
                                                     <div class="col-12">
@@ -299,11 +341,18 @@
                                 <div class="row">
                                     <h3><b>Mô tả game</b></h3>
                                     <hr>
-                                    <p>Thông tin của game</p>
+                                    <p id="game_desc">Thông tin của game</p>
                                     <br>
-                                    <h5>Cấu hình</h5>
-                                    <p>Thông tin cấu hình máy</p>
+                                    <h5><b>Cấu hình</b></h5>
+                                    <p id="game_spec">Thông tin cấu hình máy</p>
                                 </div>
+
+                                <script>
+                                    var gameTxt = <?php echo $gameTxt ?>;
+                                    console.log(gameTxt);
+                                    document.getElementById("game_desc").innerHTML = gameTxt["desc"];
+                                    document.getElementById("game_spec").innerHTML = gameTxt["spec"];
+                                </script>
                             </div>
                             <!-- comment và Games khác -->
                             <div>

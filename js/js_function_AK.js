@@ -436,3 +436,32 @@ function UserButtons() {
         sideBar3UserButton.style -= "display: none";
     }
 }
+
+function MoneyIntToStr(moneyInt, addCurrency = "") {
+    var moneyStr = "";
+    var count = 0;
+    var remainder = 0;
+    var negative = false;
+    if (moneyInt !== 0) {
+        if (moneyInt < 0) {
+            negative = true;
+            moneyInt = Math.abs(moneyInt);
+        }
+        while (moneyInt > 0) {
+            remainder = moneyInt % 10;
+            moneyStr = remainder.toString() + moneyStr;
+            moneyInt = Math.floor(moneyInt / 10);
+            if (moneyInt !== 0) count += 1;
+            if (count == 3) {
+                moneyStr = "." + moneyStr;
+                count = 0;
+            }
+        }
+
+        if (negative) moneyStr = "-" + moneyStr;        //If money is negative then add "-" before the string representation of it
+    }
+    else moneyStr = "0";
+    
+    if (addCurrency !== "") moneyStr += " " + addCurrency;
+    return moneyStr;
+}
