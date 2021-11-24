@@ -136,7 +136,7 @@
 
 
     function GetGameData($dataName, $gameNO) {
-        $requestedData = FetchFromDB(ConnectDB(), "SELECT `" . $dataName . "` FROM DB_GAMES WHERE `NUMCOUNTER`=" . $gameNO)->fetch_row();
+        $requestedData = FetchFromDB(ConnectDB(), "SELECT `$dataName` FROM DB_GAMES WHERE `NUMCOUNTER`=$gameNO")->fetch_row();
         $urlpos = strpos($requestedData[0], "watch?v=") + 8;
         if ($dataName == "TRAILER") {
             $requestedData[0] = substr($requestedData[0], $urlpos, strlen($requestedData[0]) - $urlpos);
@@ -190,9 +190,138 @@
 
     $gameName = $_POST['name'];
     $gameNumcounter = $_POST['num'];
-    if (isset($gameName) !== false) {
+    if (isset($gameName) && isset($gameNumcounter)) {
         CreatePage("gamepage.php", 
         "<?php $" . "gameNumber=" . $gameNumcounter . "; $" . "gameDir='" . "resources/DB_GAMES/" . $gameName . "/'; ?>", 
         $_SERVER["DOCUMENT_ROOT"] . "/resources/DB_GAMES/" . $gameName . "/");
+    }
+
+    function CalculateMoney($gameNumcounter, $username, $mode = 1) {
+        $userWallet = FetchFromDB(ConnectDB(), "SELECT `WALLET` FROM DB_USER WHERE `USERNAME`='$username'")->fetch_row();
+        if ($mode === 1) {
+            $gamePrice = FetchFromDB(ConnectDB(), "SELECT `PRICE` FROM DB_GAMES WHERE `NUMCOUNTER`=$gameNumcounter")->fetch_row();
+            
+            if ($gamePrice[0] == "FREE") {
+                $gamePriceStr = 0;
+            }
+            else {
+                $gamePriceStr = str_replace(".", "", $gamePrice[0]); $gamePriceStr = str_replace(" VND", "", $gamePriceStr); $gamePriceStr = intval($gamePriceStr);
+            }
+            
+            $remainingMoney = $userWallet[0] - $gamePriceStr;
+            if ($remainingMoney >= 0) {
+                return json_encode(array("result" => 1, "gamePrice" => $gamePriceStr, "userWallet" => $userWallet[0], "remainingMoney" => $remainingMoney));
+            }
+            else return json_encode(array("result" => 2, "gamePrice" => $gamePriceStr, "userWallet" => $userWallet[0], "remainingMoney" => $remainingMoney));
+        }
+        else return json_encode(array("result" => 3, "remainingMoney" => $userWallet));
+    }
+
+    function PostPurchase($gameNum, $userWallet, $type, $token) {
+        $userCookie = $_COOKIE['username'];
+        
+        //Fetch existing user data
+        $prefArray = FetchFromDB(ConnectDB(), "SELECT `PREFERENCES` FROM DB_USER WHERE `USERNAME`='$userCookie'")->fetch_row(); $prefArray = $prefArray[0];
+        $prefArray = explode("-", $prefArray);
+
+        $historyNameArray = FetchFromDB(ConnectDB(), "SELECT `HISTORY_NAME` FROM DB_USER WHERE `USERNAME`='$userCookie'")->fetch_row(); $historyNameArray = $historyNameArray[0];
+        $historyNameArray = explode("-", $historyNameArray);
+
+        $historyDateArray = FetchFromDB(ConnectDB(), "SELECT `HISTORY_DATE` FROM DB_USER WHERE `USERNAME`='$userCookie'")->fetch_row(); $historyDateArray = $historyDateArray[0];
+        $historyDateArray = explode("-", $historyDateArray);
+
+        //Fetch newly created data
+        $userPref = FetchFromDB(ConnectDB(), "SELECT `GENRE` FROM DB_GAMES WHERE `NUMCOUNTER`=$gameNum")->fetch_row(); $userPref = $userPref[0];
+        $userPref = explode("-", $userPref);
+        $userHistoryName = FetchFromDB(ConnectDB(), "SELECT `NUMCOUNTER` FROM DB_GAMES WHERE `NUMCOUNTER`=$gameNum")->fetch_row();
+        $userHistoryDate = date("d/m/Y"); $userHistoryDate = array(0 => $userHistoryDate);
+
+        //Merge old data with new data
+        $prefArray = array_merge($prefArray, $userPref);
+        $historyNameArray = array_merge($historyNameArray, $userHistoryName);
+        $historyDateArray = array_merge($historyDateArray, $userHistoryDate);
+
+        //Purge array of duplicates
+        //$prefArray = array_unique($prefArray, SORT_REGULAR);
+        $prefArray = RemoveDupsFromArr($prefArray);
+
+        //Remove empty string at start of each array
+        array_shift($prefArray);
+        array_shift($historyNameArray);
+        array_shift($historyDateArray);
+
+        //Convert arrays into string
+        $prefArray = implode("-", $prefArray);
+        $historyNameArray = implode("-", $historyNameArray);
+        $historyDateArray = implode("-", $historyDateArray);
+
+        if ($type === 'wallet') {
+            ConnectDB()->query("UPDATE `DB_USER` SET `PREFERENCES`='$prefArray',`WALLET`=$userWallet ,`HISTORY_NAME`='$historyNameArray',`HISTORY_DATE`='$historyDateArray' WHERE `USERNAME`='$userCookie'");
+        }
+        else {
+            ConnectDB()->query("UPDATE `DB_USER` SET `PREFERENCES`='$prefArray' ,`HISTORY_NAME`='$historyNameArray',`HISTORY_DATE`='$historyDateArray' WHERE `USERNAME`='$userCookie'");
+        }
+
+        ConnectDB()->query("DELETE FROM `DB_PURCHASE` WHERE `TOKEN`='$token'");
+    }
+    $gameNC = $_POST['gameNC'];
+    $userBalanceAfter = $_POST['userBalanceAfter'];
+    $purchaseType = $_POST['purchaseType'];
+    $purchaseToken = $_POST['purchaseToken'];
+    if (isset($gameNC) && isset($userBalanceAfter) && isset($purchaseType) && isset($purchaseToken)) {
+        PostPurchase($gameNC, $userBalanceAfter, $purchaseType, $purchaseToken);
+    }
+
+    function RemoveElementFromArr($array, $elementPos) {
+        for ($i = $elementPos; $i < count($array) - 1; $i++) {
+            $array[$i] = $array[$i + 1];
+        }
+        array_pop($array);
+        return $array;
+    }
+    function RemoveDupsFromArr($array) {
+        for ($x = 0; $x < count($array); $x++) {
+            for ($y = 0; $y < count($array); $y++) {
+                if ($x !== $y) {
+                    if ($array[$x] === $array[$y]) {
+                        $array = RemoveElementFromArr($array, $y);
+                    }
+                }
+            }
+        }
+        return $array;
+    }
+
+    function HashString() {
+        $string = "abcdergfasgdkjdnfbvndfjs";
+        $string = str_shuffle($string);
+        $hash = password_hash($string, PASSWORD_DEFAULT);
+        HashStringToDB($hash);
+        return $hash;
+    }
+    function HashStringToDB($string) {
+        ConnectDB()->query("INSERT INTO `DB_PURCHASE` (`TOKEN`) VALUES ('$string')");
+    }
+
+    function PurchasableGame($username, $gameToSearchFor) {
+        $username = $_COOKIE['username'];
+        $boughtGames = FetchFromDB(ConnectDB(), "SELECT `HISTORY_NAME` FROM `DB_USER` WHERE `USERNAME`='$username'")->fetch_row();  $boughtGames = $boughtGames[0];
+        $boughtGames = explode("-", $boughtGames);
+        for ($i = 0; $i < count($boughtGames); $i++) {
+            $boughtGameNum = $boughtGames[$i];
+            $boughtGameName = FetchFromDB(ConnectDB(), "SELECT `NAME` FROM `DB_GAMES` WHERE `NUMCOUNTER`='$boughtGameNum'")->fetch_row(); $boughtGameName = $boughtGameName[0];
+            if ($boughtGameName === $gameToSearchFor) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function GetGameTxt($gameDir) {
+        $gameDesc = FileProcessing($gameDir . "mota.txt");
+        $gameDesc = str_replace("\r\n", "<br>", $gameDesc);
+        $gameSpec = FileProcessing($gameDir . "cauhinh.txt");
+        $gameSpec = str_replace("\r\n", "<br>", $gameSpec);
+        return json_encode(array("desc" => $gameDesc, "spec" => $gameSpec));
     }
 ?>
