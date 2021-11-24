@@ -15,7 +15,61 @@
         <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
         <link rel="stylesheet" href="css/style_AK.css">
         <link rel="stylesheet" href="css/gameinfo_MH.css">
-        <link rel="stylesheet" href="css/term_MH.css">
+        
+        <style>
+            hr{
+                margin: 2px;
+            }
+            ol{
+                margin-left: 30px;
+                font-family: BreeSerif_N;
+                word-wrap: break-word;
+            }
+            .table_content
+            {
+                background-color: #1C1656;
+                border-radius: 20px;
+                height: 80vh;
+                padding: 2%; 
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0px;
+            }
+            .table_content a
+            {
+                color: white;
+                text-decoration: none;
+                font-size: small;
+                text-decoration: underline;
+            }
+            #modal_header
+            {
+                background-color: #1C1656;
+                height: 50px;
+                border: none;
+                border-color: transparent;
+                color: white;
+            }
+            #modal_body
+            {
+                height: 85vh;
+                overflow-y: scroll;
+                background-color:#17144B;
+                color: white;
+            }
+            #modal_body:hover{overflow-y: auto;}
+            .terms
+            {
+                text-align: justify;
+                word-wrap: initial;
+                padding: 3%;
+                color: white;
+            }
+            h3.terms
+            {
+                margin-top: 5px;
+            }
+        </style>
     </head>
 
     <body onmouseover="TermsPanCheck()" onload="Sidebar(); UserButtons();" onresize="Sidebar()">
@@ -227,7 +281,7 @@
                                 </div>
                                 <div class="row align-items-center" id="user_button_user" style="display: none">
                                     <div class="col-6 text-center"><p id="user_button_username"></p></div>
-                                    <div class="col-6 text-center"><a href="" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
+                                    <div class="col-6 text-center"><a href="pages/library.php" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
                                 </div>
                             </div>
                         </div>
@@ -391,11 +445,11 @@
         <div class="modal fade" id="modal_terms" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" id="modal_header">
                         <h5 class="modal-title" id="modal-title">ĐIỀU KHOẢN VÀ DỊCH VỤ</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="modal_body">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 table_content">
