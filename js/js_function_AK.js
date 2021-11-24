@@ -435,7 +435,6 @@ function UserButtons() {
         sideBar3AnonButtons.style = "display: none";
         sideBar3UserButton.style -= "display: none";
     }
-<<<<<<< HEAD
 }
 
 function MoneyIntToStr(moneyInt, addCurrency = "") {
