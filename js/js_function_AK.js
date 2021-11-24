@@ -216,7 +216,7 @@ function GetCookie(cName) {
     return res;
 }
 function RemoveCookie(cName) {
-    document.cookie = cName+'=; Max-Age=-99999999;';
+    document.cookie = cName+'=;  Max-Age=-99999999; path=/';
     window.location.href = "";
 }
 

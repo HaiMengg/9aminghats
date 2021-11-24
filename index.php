@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="row align-items-center" id="user_button_user" style="display: none">
                                     <div class="col-6 text-center"><p id="user_button_username"></p></div>
-                                    <div class="col-6 text-center"><a href="" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
+                                    <div class="col-6 text-center"><a href="pages/library.php" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
                                 </div>
                             </div>
                         </div>
