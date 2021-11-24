@@ -14,7 +14,7 @@
         $checkReg = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='$emailReg'");
         $checkRegUser = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `USERNAME`='$userReg'");
         if ($checkReg->num_rows == 0 && $checkRegUser->num_rows == 0) {       
-            $insertReg = "INSERT INTO `DB_USER` (`FULLNAME`, `EMAIL`, `USERNAME`, `PASSWORD`, `TOKEN`, `DOB`, `PREFERENCES`, `ACTIVATION`, `WALLET`, `WISHLIST`) VALUES ('$fullNameReg ', '$emailReg', '$userReg', '$pwdReg', '$pwdRegHashed', '$dobReg', '', 0, 1000000, '')";
+            $insertReg = "INSERT INTO `DB_USER` (`FULLNAME`, `EMAIL`, `USERNAME`, `PASSWORD`, `TOKEN`, `DOB`, `PREFERENCES`, `ACTIVATION`, `WALLET`, `WISHLIST`, `HISTORY_NAME`, `HISTORY_DATE`) VALUES ('$fullNameReg ', '$emailReg', '$userReg', '$pwdReg', '$pwdRegHashed', '$dobReg', '', 0, 1000000, '', '', '')";
             ConnectDB()->query($insertReg);
 
             //Send mail to notify user of activation process
