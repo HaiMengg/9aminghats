@@ -1,79 +1,233 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <title>Đăng ký | 9aminghats</title>
+        <title>Trang chủ | 9amingHats</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Thêm logo trên tab -->
         <base href="https://high-man.com/">
         <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
         <link rel="manifest" href="resources/favicon/site.webmanifest">
-        <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
-        <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
         <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/signin_MH.css">
+        <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
+        <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
+        <link rel="stylesheet" href="css/style_AK.css">
         <link rel="stylesheet" href="css/term_MH.css">
     </head>
-    <body onmouseover="TermsPanCheck()">
-        <!--Use custom JS functions-->
-        <script src="js/js_function_AK.js"></script>
 
-        <div class="row" style="height:100%;">
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" id="rocket">
-                <div class="row" id="logo">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <a href="index.php"><img src="resources/Homepage/main_nav/logo/logo.png"></a>
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"></div>
-                </div>            
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="content">
-                <div class="row" style="margin: -4vh 0% 0% 0%"><h2><b>Đăng Kí Tài Khoản</b></h2></div>
-                <div class="row">
-                    <p style="color: red; display: none" id="register_notif"></p>
+    <body onmouseover="TermsPanCheck()" onload="Sidebar(); UserButtons();" onresize="Sidebar()" id="index_body">
+        <!--Connect to mySQL database-->
+        <?php chdir($_SERVER["DOCUMENT_ROOT"] . "/") ?>
+        <?php include "php/php_functions.php"; 
+            $conn = ConnectDB();
+        ?>
+        <!--Using custom JS script-->
+        <script type="text/javascript" src="js/js_function_AK.js"></script>
+        <script type="text/javascript" src="js/layout_customize_AK.js"></script>
+
+        <div class="container-fluid" id="topbar_mobile">
+            <div class="row align-items-center">
+                <div class="col-2 text-start">
+                    <button onclick="ShowSidebarMobi('sidebar_mobile')" style="color: white; border: 0; border-radius: 100px; background-image: linear-gradient(to right, #ab14fc , #713efc);">☰</button>
                 </div>
-                <div class="row" style="margin: 0% 0% 2% 0%;">
-                    <form action="javascript:ProcessRegisterInfo();" id="register_form">
-                        <h5><b>Họ và tên</b></h5>
-                        <div class="input-container input row">
-                            <input type="text" name="name" placeholder="Họ và tên của bạn" style="width: 90%;"/>
-                        </div>
-                         <h5><b>Ngày sinh</b></h5>
-                        <div class="input-container input row">
-                            <input type="date" name="DOB" placeholder="01/01/2021" style="width: 90%;"/>
-                        </div>
-                        <h5><b>Email</b></h5>
-                        <div class="input-container input row">
-                            <input type="text" name="email" placeholder="Email của bạn" style="width: 90%;"/>
-                        </div>
-                        <h5><b>Tên đăng nhập</b></h5>
-                        <div class="input-container input row">
-                            <input type="text" name="user_name" placeholder="Tên đăng nhập" style="width: 90%;"/>
-                        </div>
-                        <h5><b>Mật khẩu</b></h5>
-                        <div class="input-container input row">
-                            <input type="password" name="password" placeholder="Mật khẩu của bạn" style="width: 90%;"/>
-                        </div>
-                        <h5><b>Xác nhận mật khẩu</b></h5>
-                        <div class="input-container input row">
-                            <input type="password" name="password_reconfirm" placeholder="Nhập lại mật khẩu" style="width: 90%;"/>
-                        </div>
-                        <div class="input-container inline">
-                            <input type="checkbox" name="accept"/>
-                            <label for="accept" style="margin-left: 10px; font-size: large;">Đồng ý với  <a href="#modal_terms" data-bs-toggle="modal" data-bs-target="#modal_terms" style="color: white;">Điều khoản dịch vụ</a> của chúng tôi.</label>
-                        </div>
-                        <button type="submit" class="sub"><b>Đăng ký</b></button>
-                        <div class="row text-center inline" style="font-size: large;">
-                            Bạn đã có tài khoản?
-                            <a href="pages/signin.php" style="color: white;">Đăng nhập tại đây</a>
-                        </div>
-                    </form>
+                <div class="col-8 text-center">
+                    <img src="resources/Homepage/main_nav/logo/logo.png" alt="Site Logo">
+                </div>
+                <div class="col-2 text-end">
+                    <button onclick="ShowSidebarMobi('sidebar_mobile_3')" style="color: white; border: 0; border-radius: 100px; background-image: linear-gradient(to right, #ab14fc , #713efc);">☰</button>
                 </div>
             </div>
         </div>
-        <!-- Terms -->
+
+        <div class="container-fluid" id="sidebar_mobile">
+            <div class="row">
+                <div class="col-3" id="sidebar_mobile_col">
+                    <div class="row align-items-center"><button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="HideSidebarMobi('sidebar_mobile')">Đóng</button></div>
+                    <div class="row align-items-center" id="other_pages" style="margin-top: 4vh; padding-left: 1px">
+                        <a href=""><b>Hướng dẫn</b></a>
+                        <a href=""><b>Khám phá</b></a>
+                        <a href=""><b>Điều khoản và Dịch vụ</b></a>
+                    </div>
+                    <div class="row align-items-center text-center" style="margin-top: 1vh">
+                        <a style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" href="pages/aboutus2.html"><b>Về chúng tôi</b></a>
+                    </div>
+                    <div class="row align-items-center" style="margin-top: 3vh">
+                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="SidebarSwitch()"><b>Thể loại</b></button>
+                    </div>
+                </div>
+                <div class="col-9"></div>
+            </div>
+        </div>
+
+        <div class="container-fluid" id="sidebar_mobile_2">
+            <div class="row">
+                <div class="col-3" id="sidebar_mobile_2_col">
+                    <div class="row align-items-center"><button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="HideSidebarMobi('sidebar_mobile_2')">Đóng</button></div>
+                    <div class="row align-items-center" style="margin-top: 4vh; padding-left: 1px">
+                        <div class="col-6">
+                            <a href=""><b>Nhập vai</b></a><br>
+                            <a href=""><b>Bắn súng</b></a><br>
+                            <a href=""><b>Mô phỏng</b></a><br>
+                            <a href=""><b>Sinh tồn</b></a><br>
+                            <a href=""><b>Thực tế ảo</b></a><br>
+                            <a href=""><b>Phiêu lưu</b></a><br>
+                            <a href=""><b>Kinh dị</b></a><br>
+                            <a href=""><b>Thể thao</b></a><br>
+                            <a href=""><b>Trẻ em</b></a><br>
+                            <a href=""><b>Giải đố</b></a><br>
+                            <a href=""><b>Âm nhạc</b></a>
+                        </div>
+                        <div class="col-6">
+                            <a href=""><b>MOBA</b></a><br>
+                            <a href=""><b>Hành động</b></a><br>
+                            <a href=""><b>Gacha</b></a><br>
+                            <a href=""><b>Phối hợp</b></a><br>
+                            <a href=""><b>Anime</b></a><br>
+                            <a href=""><b>Hài hước</b></a><br>
+                            <a href=""><b>Chiến thuật</b></a><br>
+                            <a href=""><b>Tiểu thuyết trực quan</b></a><br>
+                            <a href=""><b>Battle Royale</b></a><br>
+                            <a href=""><b>Thế giới mở</b></a><br>
+                            <a href=""><b>Viễn tưởng</b></a><br>
+                            <a href=""><b>Quân sự</b></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9"></div>
+            </div>
+        </div>
+
+        <div class="container-fluid" id="sidebar_mobile_3">
+            <div class="row">
+                <div class="col-9"></div>
+                <div class="col-3 text-end" id="sidebar_mobile_3_col">
+                    <div class="row align-items-center">
+                        <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="HideSidebarMobi('sidebar_mobile_3')">Đóng</button>
+                    </div>
+                    <div class="row" style="margin-top: 2vh"><input type="text" name="search" size="20" placeholder="Tìm kiếm..."/></div>
+                    <div id="sidebar_mobile_3_logInOut">
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="CheckLogInState('login')">Đăng nhập</button>
+                        </div>
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button type="button" style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);" onclick="CheckLogInState('signin')">Đăng kí</button>
+                        </div>
+                    </div>
+                    <div id="sidebar_mobile_3_userprofile" style="display: none;">
+                        <div class="row align-items-center" style="margin-top: 3vh">
+                            <button style="color: white; border: 0; border-radius: 15px; background-image: linear-gradient(to right, #ab14fc , #713efc);">Thông tin người dùng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" id="content_js">
+            <div class="row">
+                <div class="col-3" style="padding: 1.5%; padding-top: 1%" id="sidebar_js">
+                    <div class="row">
+                        <div class="col-12 sticky" id="sidebar">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <img src="resources/Homepage/main_nav/logo/logo.png" alt="Site Logo" style="width: 100%; height: 100%;"> 
+                                </div>
+                            </div>
+                            <div id="sidebar_content">
+                                <div class="row align-items-center" id="home_button">
+                                    <div class="col-3" style="text-align: right">
+                                        <img src="resources/Homepage/main_nav/others/home_icon.png" alt="Home Icon" style="width: 60%; height: 100%;">
+                                    </div>
+                                    <div class="col-9"><a href=""><b>Trang chủ</b></a></div>
+                                </div>
+                                <div class="row align-items-center" id="other_pages">
+                                    <a href="#"><b>Hướng dẫn</b></a>
+                                    <a href="#"><b>Khám phá</b></a>
+                                    <a href="#modal_terms" data-bs-toggle="modal" data-bs-target="#modal_terms" style="color: white;"><b>Điều khoản và Dịch vụ</b></a>
+                                </div>
+                                <div id="about_us">
+                                    <a href="pages/aboutus2.html"><b>Về chúng tôi</b></a>
+                                </div>
+                            </div>
+                            <div id="category">
+                                <div class="row">
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=1"><img src="resources/Homepage/main_nav/others/genres/rpg.png" alt="RPG Genre"><p>Nhập vai</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=4"><img src="resources/Homepage/main_nav/others/genres/shooter.png" alt="Shooter Genre"><p>Bắn súng</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=10"><img src="resources/Homepage/main_nav/others/genres/sim.png" alt="Simulator Genre"><p>Mô phỏng</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=16"><img src="resources/Homepage/main_nav/others/genres/survival.png" alt="Survival Genre"><p>Sinh tồn</p></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=11"><img src="resources/Homepage/main_nav/others/genres/vr.png" alt="VR Genre"><p>Thực tế ảo</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=21"><img src="resources/Homepage/main_nav/others/genres/adventure.png" alt="Adventure Genre"><p>Phiêu lưu</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=2"><img src="resources/Homepage/main_nav/others/genres/horror.png" alt="Horror Genre"><p>Kinh dị</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=14"><img src="resources/Homepage/main_nav/others/genres/sport.png" alt="Sport Genre"><p>Thể thao</p></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=19"><img src="resources/Homepage/main_nav/others/genres/kid.png" alt="Kid Genre"><p>Trẻ em</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=5"><img src="resources/Homepage/main_nav/others/genres/puzzle.png" alt="Puzzle Genre"><p>Giải đố</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=24"><img src="resources/Homepage/main_nav/others/genres/musical.png" alt="Musical Genre"><p>Âm nhạc</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=9"><img src="resources/Homepage/main_nav/others/genres/moba.png" alt="Moba Genre"><p>MOBA</p></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=22"><img src="resources/Homepage/main_nav/others/genres/action.png" alt="Action Genre"><p>Hành động</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=7"><img src="resources/Homepage/main_nav/others/genres/gacha.png" alt="Gacha Genre"><p>Gacha</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=12"><img src="resources/Homepage/main_nav/others/genres/coop.png" alt="Coop Genre"><p>Phối hợp</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=23"><img src="resources/Homepage/main_nav/others/genres/anime.png" alt="Anime Genre"><p>Anime</p></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=3"><img src="resources/Homepage/main_nav/others/genres/comedy.png" alt="Comedy Genre"><p>Hài hước</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=13"><img src="resources/Homepage/main_nav/others/genres/strategy.png" alt="Strategy Genre"><p>Chiến thuật</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=18"><img src="resources/Homepage/main_nav/others/genres/vn.png" alt="VN Genre"><p>Tiểu thuyết trực quan</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=8"><img src="resources/Homepage/main_nav/others/genres/br.png" alt="BR Genre"><p>Battle Royale</p></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 text-center"><a href="pages/genre.php?gno=20"><img src="resources/Homepage/main_nav/others/genres/open.png" alt="Open-World Genre"><p>Thế giới mở</p></a></div>
+                                    <div class="col-4 text-center"><a href="pages/genre.php?gno=15"><img src="resources/Homepage/main_nav/others/genres/scifi.png" alt="Scifi Genre"><p>Viễn tưởng</p></a></div>
+                                    <div class="col-4 col-xs-4 text-center"><a href="pages/genre.php?gno=17"><img src="resources/Homepage/main_nav/others/genres/military.png" alt="Military Genre"><p>Quân sự</p></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9" id="mainpanel">
+                    <div class="row" id="search">
+                        <div class="col-10">
+                            <div id="search_bar">
+                                <input type="text" id="search_bar_js" name="search" size="100" placeholder="Nhập tên game/thể loại/nhà phát triển..."/>
+                                <a href="#"><img src="resources/Homepage/main_nav/others/search_icon.png" alt="Search Button"></a>
+                            </div>
+                        </div>
+                        <div class="col-2 text-end">
+                            <div id="user_buttons">
+                                <div class="row align-items-center" id="user_buttons_anon">
+                                    <div class="col-6 text-center" style="border-right: 1px solid purple"><a href="javascript:CheckLogInState('login')">Đăng nhập</a></div>
+                                    <div class="col-6 text-center"><a href="javascript:CheckLogInState('signin')">Đăng kí</a></div>
+                                </div>
+                                <div class="row align-items-center" id="user_button_user" style="display: none">
+                                    <div class="col-6 text-center"><p id="user_button_username"></p></div>
+                                    <div class="col-6 text-center"><a href="pages/library.php" id="user_button_userprofile"><img src="resources/Homepage/main_nav/others/loginlogout.png" alt="LogInOut Button"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="main_content">
+                        <div class="col-12" id="showcase">
+                        </div>
+
+                        <?php
+                            $genreNo = $_GET['gno'];
+                            $genreData = GetGenreData($genreNo);
+                        ?>
+                        <script>
+                            var genreNo = "<?php echo $genreNo ?>";
+                            DisplayGamesAsList(<?php echo $genreData ?>);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--TOS-->
         <div class="modal fade" id="modal_terms" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
@@ -310,6 +464,5 @@
                 </div>
             </div>
         </div>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-     </body>
+    </body>
 </html>
