@@ -476,3 +476,58 @@ function TermsPanCheck() {
         }
     }
 }
+
+function DisplayGamesAsList(genreData) {
+    var showcase = document.getElementById("showcase");
+
+    var genreName = genreData["gname"];
+    var genreRow = document.createElement("div");
+    genreRow.setAttribute("class", "row align-items-center");
+    genreRow.setAttribute("style", "padding: 2%");
+    genreRow.innerHTML = "<p id='genre_name'><b>" + genreName + "</b></p>";
+    showcase.appendChild(genreRow);
+
+    var gameNameArray = genreData["name"];
+    var gameNumArray = genreData["numcounter"];
+    var gameLogoArray = genreData["img"];
+
+    var slideNum = 0;
+    var elementNumCount = 0;
+    var elementNum = gameNameArray.length;
+    //3 elements per slide
+    if (elementNum % 3 == 0) slideNum = elementNum / 3;              //If x number of elements is divisible by 3 then x elements can be equally split into (x/3) number of slides
+    //Otherwise, if x < 3 then put x elements in a single slide and leave them be, else if there are more slides than can be split
+                                                                       //into (x/3) number of slides then leave the remaining elements in the next empty slide
+    else {
+        slideNum = Math.ceil(elementNum / 3);
+    }                  
+    for (let i = 1; i <= slideNum; i++) {
+        var row = document.createElement("div");
+        row.setAttribute("class", "row align-items-center");
+        row.setAttribute("style", "padding: 2%");
+
+        for (let x = 1; x <= 3; x++) {                          //Repeatedly creates different elements of the same slide
+            if (elementNumCount < elementNum) {
+                var element = document.createElement("div");
+                element.setAttribute("class", "col-4 text-center");
+                element.setAttribute("style", "padding: 1%");
+    
+                var elementRow1 = document.createElement("div");
+                var elementRow2 = document.createElement("div");
+    
+                var elementContent = document.createElement("img");           //The images are still unstable so LATER
+                elementContent.src = gameLogoArray[elementNumCount];
+                elementContent.id = "gameLogo";
+                elementContent.setAttribute("onclick", "DataToPHP('" + gameNameArray[elementNumCount] + "', '" + gameNumArray[elementNumCount] + "')");
+                row.appendChild(element).appendChild(elementRow1).appendChild(elementContent);
+    
+                var elementName = document.createElement("p");
+                elementName.innerText = gameNameArray[elementNumCount];
+                row.appendChild(element).appendChild(elementRow2).appendChild(elementName);
+    
+                elementNumCount++;
+            }
+        }
+        showcase.appendChild(row);
+    }
+}
