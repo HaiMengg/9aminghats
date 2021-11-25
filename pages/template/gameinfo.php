@@ -227,39 +227,39 @@
                             </div>
                             <div id="category">
                                 <div class="row">
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/rpg.png" alt="RPG Genre"><p>Nhập vai</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/shooter.png" alt="Shooter Genre"><p>Bắn súng</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/sim.png" alt="Simulator Genre"><p>Mô phỏng</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/survival.png" alt="Survival Genre"><p>Sinh tồn</p></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=1"><img src="resources/Homepage/main_nav/others/genres/rpg.png" alt="RPG Genre"><p>Nhập vai</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=4"><img src="resources/Homepage/main_nav/others/genres/shooter.png" alt="Shooter Genre"><p>Bắn súng</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=10"><img src="resources/Homepage/main_nav/others/genres/sim.png" alt="Simulator Genre"><p>Mô phỏng</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=16"><img src="resources/Homepage/main_nav/others/genres/survival.png" alt="Survival Genre"><p>Sinh tồn</p></a></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/vr.png" alt="VR Genre"><p>Thực tế ảo</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/adventure.png" alt="Adventure Genre"><p>Phiêu lưu</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/horror.png" alt="Horror Genre"><p>Kinh dị</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/sport.png" alt="Sport Genre"><p>Thể thao</p></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=11"><img src="resources/Homepage/main_nav/others/genres/vr.png" alt="VR Genre"><p>Thực tế ảo</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=21"><img src="resources/Homepage/main_nav/others/genres/adventure.png" alt="Adventure Genre"><p>Phiêu lưu</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=2"><img src="resources/Homepage/main_nav/others/genres/horror.png" alt="Horror Genre"><p>Kinh dị</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=14"><img src="resources/Homepage/main_nav/others/genres/sport.png" alt="Sport Genre"><p>Thể thao</p></a></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3 text-center"><a href="#"><img src="resources/Homepage/main_nav/others/genres/kid.png" alt="Kid Genre"><p>Trẻ em</p></a></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/puzzle.png" alt="Puzzle Genre"><p>Giải đố</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/musical.png" alt="Musical Genre"><p>Âm nhạc</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/moba.png" alt="Moba Genre"><p>MOBA</p></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=19"><img src="resources/Homepage/main_nav/others/genres/kid.png" alt="Kid Genre"><p>Trẻ em</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=5"><img src="resources/Homepage/main_nav/others/genres/puzzle.png" alt="Puzzle Genre"><p>Giải đố</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=24"><img src="resources/Homepage/main_nav/others/genres/musical.png" alt="Musical Genre"><p>Âm nhạc</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=9"><img src="resources/Homepage/main_nav/others/genres/moba.png" alt="Moba Genre"><p>MOBA</p></a></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/action.png" alt="Action Genre"><p>Hành động</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/gacha.png" alt="Gacha Genre"><p>Gacha</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/coop.png" alt="Coop Genre"><p>Phối hợp</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/anime.png" alt="Anime Genre"><p>Anime</p></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=22"><img src="resources/Homepage/main_nav/others/genres/action.png" alt="Action Genre"><p>Hành động</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=7"><img src="resources/Homepage/main_nav/others/genres/gacha.png" alt="Gacha Genre"><p>Gacha</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=12"><img src="resources/Homepage/main_nav/others/genres/coop.png" alt="Coop Genre"><p>Phối hợp</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=23"><img src="resources/Homepage/main_nav/others/genres/anime.png" alt="Anime Genre"><p>Anime</p></a></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/comedy.png" alt="Comedy Genre"><p>Hài hước</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/strategy.png" alt="Strategy Genre"><p>Chiến thuật</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/vn.png" alt="VN Genre"><p>Tiểu thuyết trực quan</p></div>
-                                    <div class="col-3 text-center"><img src="resources/Homepage/main_nav/others/genres/br.png" alt="BR Genre"><p>Battle Royale</p></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=3"><img src="resources/Homepage/main_nav/others/genres/comedy.png" alt="Comedy Genre"><p>Hài hước</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=13"><img src="resources/Homepage/main_nav/others/genres/strategy.png" alt="Strategy Genre"><p>Chiến thuật</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=18"><img src="resources/Homepage/main_nav/others/genres/vn.png" alt="VN Genre"><p>Tiểu thuyết trực quan</p></a></div>
+                                    <div class="col-3 text-center"><a href="pages/genre.php?gno=8"><img src="resources/Homepage/main_nav/others/genres/br.png" alt="BR Genre"><p>Battle Royale</p></a></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4 text-center"><img src="resources/Homepage/main_nav/others/genres/open.png" alt="Open-World Genre"><p>Thế giới mở</p></div>
-                                    <div class="col-4 text-center"><img src="resources/Homepage/main_nav/others/genres/scifi.png" alt="Scifi Genre"><p>Viễn tưởng</p></div>
-                                    <div class="col-4 col-xs-4 text-center"><img src="resources/Homepage/main_nav/others/genres/military.png" alt="Military Genre"><p>Quân sự</p></div>
+                                    <div class="col-4 text-center"><a href="pages/genre.php?gno=20"><img src="resources/Homepage/main_nav/others/genres/open.png" alt="Open-World Genre"><p>Thế giới mở</p></a></div>
+                                    <div class="col-4 text-center"><a href="pages/genre.php?gno=15"><img src="resources/Homepage/main_nav/others/genres/scifi.png" alt="Scifi Genre"><p>Viễn tưởng</p></a></div>
+                                    <div class="col-4 col-xs-4 text-center"><a href="pages/genre.php?gno=17"><img src="resources/Homepage/main_nav/others/genres/military.png" alt="Military Genre"><p>Quân sự</p></a></div>
                                 </div>
                             </div>
                         </div>
