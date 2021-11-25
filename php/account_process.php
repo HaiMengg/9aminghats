@@ -57,18 +57,9 @@
     //Password reset
     else if ($mode == "resetPass") {
         $emailResetPass = $_POST['emailResetPass'];
-        $userResetPass = $_POST['userResetPass'];
-        $checkAccountResetPass = "";
-        $url = "";
-
-        if (!empty($userResetPass)) {
-            $checkAccountResetPass = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='$emailResetPass' AND `USERNAME`='$userResetPass'");
-            $url = "https://high-man.com/pages/forgotpassword_s2.php?" . "email=" . $emailResetPass . "&user=" . $userResetPass;
-        }
-        else {
-            $checkAccountResetPass = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='$emailResetPass'");
-            $url = "https://high-man.com/pages/forgotpassword_s2.php?" . "email=" . $emailResetPass;
-        }
+        
+        $checkAccountResetPass = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='$emailResetPass'");
+        $url = "https://high-man.com/pages/forgotpassword_s2.php?" . "email=" . $emailResetPass;
 
         if ($checkAccountResetPass->num_rows == 1) {
             //Send mail to notify user of activation process

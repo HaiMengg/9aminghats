@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/signin_MH.css">
         <link rel="stylesheet" href="css/term_MH.css">
     </head>
-    <body>
+    <body onmouseover="TermsPanCheck()">
         <!--Use custom JS functions-->
         <script src="js/js_function_AK.js"></script>
 
@@ -62,7 +62,11 @@
                         </div>
                         <div class="input-container inline">
                             <input type="checkbox" name="accept"/>
+<<<<<<< HEAD
                             <label for="accept" style="margin-left: 10px; font-size: large;">Đồng ý với  <a href="#modal_terms" data-bs-toggle="modal" data-bs-targe="#modal_terms" style="color: white;">Điều khoản dịch vụ</a> của chúng tôi.</label>
+=======
+                            <label for="accept" style="margin-left: 10px; font-size: large;">Đồng ý với  <a href="#modal_terms" data-bs-toggle="modal" data-bs-target="#modal_terms" style="color: white;">Điều khoản dịch vụ</a> của chúng tôi.</label>
+>>>>>>> 902ba80a3351f53e4f535952fb6edc957edd4fba
                         </div>
                         <button type="submit" class="sub"><b>Đăng ký</b></button>
                         <div class="row text-center inline" style="font-size: large;">
@@ -86,6 +90,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 table_content">
                                     <div class="container" style="padding-top:5%; padding-bottom: 5%;">
+<<<<<<< HEAD
                                         <a href="#intro">GIỚI THIỆU</a> <hr>
                                         <a href="#security">BẢO MẬT</a> <hr>
                                         <a href="#limited_use_rights">GIỚI HẠN VỀ QUYỀN SỬ DỤNG</a> <hr>
@@ -102,6 +107,60 @@
                                         <a href="#effect">TÍNH HIỆU LỰC TỪNG PHẦN</a> <hr>
                                         <a href="#ajust">LUẬT ĐIỀU CHỈNH</a> <hr>
                                         <a href="#general_rules">CÁC QUY ĐỊNH CHUNG</a> <hr>
+=======
+                                        <a id="p_intro">GIỚI THIỆU</a> <hr>
+                                        <a id="p_security">BẢO MẬT</a> <hr>
+                                        <a id="p_limited_use_rights">GIỚI HẠN VỀ QUYỀN SỬ DỤNG</a> <hr>
+                                        <a id="p_software">PHẦN MỀM</a> <hr>
+                                        <a id="p_account_and_security">TÀI KHOẢN VÀ BẢO MẬT</a> <hr>
+                                        <a id="p_payment">CÁC ĐIỀU KHOẢN VÀ THANH TOÁN</a> <hr>
+                                        <a id="p_excluding_liability">LOẠI TRỪ TRÁCH NHIỆM</a> <hr>
+                                        <a id="p_limited_liability">CÁC TRƯỜNG HỢP LOẠI TRỪ VÀ GIỚI HẠN TRÁCH NHIỆM PHÁP LÝ</a> <hr>
+                                        <a id="p_third_party_links">LIÊN KẾT ĐẾN CÁC TRANG CỦA BÊN THỨ BA</a> <hr>
+                                        <a id="p_term_of_use">ĐIỀU KHOẢN SỬ DỤNG</a> <hr>
+                                        <a id="p_violate">VI PHẠM CÁC ĐIỀU KHOẢN DỊCH VỤ CỦA CHÚNG TÔI</a> <hr>
+                                        <a id="p_your_assure">ĐẢM BẢO VÀ CAM ĐOAN CỦA BẠN</a> <hr>
+                                        <a id="p_indemnify">BỒI THƯỜNG</a> <hr>
+                                        <a id="p_effect">TÍNH HIỆU LỰC TỪNG PHẦN</a> <hr>
+                                        <a id="p_ajust">LUẬT ĐIỀU CHỈNH</a> <hr>
+                                        <a id="p_general_rules">CÁC QUY ĐỊNH CHUNG</a> <hr>
+                                        
+                                        <script>
+                                            var intro = document.getElementById("p_intro");
+                                            var security = document.getElementById("p_security");
+                                            var limited = document.getElementById("p_limited_use_rights");
+                                            var software = document.getElementById("p_software");
+                                            var aas = document.getElementById("p_account_and_security");
+                                            var payment = document.getElementById("p_payment");
+                                            var el = document.getElementById("p_excluding_liability");
+                                            var ll = document.getElementById("p_limited_liability");
+                                            var tpl = document.getElementById("p_third_party_links");
+                                            var tos = document.getElementById("p_term_of_use");
+                                            var violate = document.getElementById("p_violate");
+                                            var assure = document.getElementById("p_your_assure");
+                                            var indemnify = document.getElementById("p_indemnify");
+                                            var effect = document.getElementById("p_effect");
+                                            var ajust = document.getElementById("p_ajust");
+                                            var generalrules = document.getElementById("p_general_rules");
+
+                                            intro.setAttribute("href", window.location.href + "#intro");
+                                            security.setAttribute("href", window.location.href + "#security");
+                                            limited.setAttribute("href", window.location.href + "#limited_use_rights");
+                                            software.setAttribute("href", window.location.href + "#software");
+                                            payment.setAttribute("href", window.location.href + "#payment");
+                                            aas.setAttribute("href", window.location.href + "#account_and_security");
+                                            el.setAttribute("href", window.location.href + "#excluding_liability");
+                                            ll.setAttribute("href", window.location.href + "#limited_liability");
+                                            tpl.setAttribute("href", window.location.href + "#third_party_links");
+                                            tos.setAttribute("href", window.location.href + "#term_of_use");
+                                            violate.setAttribute("href", window.location.href + "#violate");
+                                            assure.setAttribute("href", window.location.href + "#your_assure");
+                                            indemnify.setAttribute("href", window.location.href + "#indemnify");
+                                            effect.setAttribute("href", window.location.href + "#effect");
+                                            ajust.setAttribute("href", window.location.href + "#ajust");
+                                            generalrules.setAttribute("href", window.location.href + "#general_rules");
+                                        </script>
+>>>>>>> 902ba80a3351f53e4f535952fb6edc957edd4fba
                                     </div>           
                                 </div>
                                 <div class="div col-lg-8 col-md-8 col-sm-8 terms">
@@ -216,6 +275,10 @@
                                             <li>Bạn hiểu rằng mọi Nội Dung, cho dù được đăng công khai hay gửi riêng tư, là do người gửi Nội Dung đó hoàn toàn chịu trách nhiệm. Điều này có nghĩa là bạn, chứ không phải Chúng tôi, hoàn toàn chịu trách nhiệm đối với mọi Nội Dung bạn tải lên, đăng, gửi email, gửi hoặc cung cấp theo hình thức khác thông qua Trang Web. Chúng tôi không kiểm soát Nội Dung đăng trên Trang Web và, như thế, không đảm bảo tính chính xác, tính toàn vẹn hay chất lượng của Nội Dung đó. Bạn hiểu rằng bằng việc sử dụng Trang Web này, bạn có thể tiếp xúc với Nội Dung mà bạn có thể cho là khiếm nhã, đáng lên án hoặc có tính công kích. Trong mọi trường hợp, Chúng tôi sẽ không chịu trách nhiệm pháp lý dưới bất kỳ hình thức nào đối với bất kỳ Nội Dung nào, bao gồm, nhưng không giới hạn, lỗi hay thiếu sót trong bất kỳ Nội Dung nào, hay bất kỳ tổn thất hay thiệt hại nào dưới bất kỳ hình thức nào phát sinh từ việc sử dụng hoặc dựa vào bất kỳ Nội Dung nào được đăng tải, email, truyền tải hoặc cung cấp trên Trang Web</li>
                                             <li>Bạn xác nhận rằng Chúng tôi có thể hoặc có thể không sàng lọc trước Nội Dung nhưng Chúng tôi và những người được chỉ định của họ sẽ có toàn quyền (nhưng không phải là nghĩa vụ) sàng lọc trước, từ chối, xóa hay gỡ bỏ bất kỳ Nội Dung nào được đăng trên Trang Web. Không giới hạn các quy định trên, Chúng tôi và những người được chỉ định sẽ có quyền gỡ bỏ bất kỳ Nội Dung nào vi phạm các Điều Khoản Dịch Vụ này, nếu chúng tôi nhận được khiếu nại từ một người dùng khác, nếu chúng tôi nhận được thông báo về sự xâm phạm tài sản trí tuệ hoặc yêu cầu có giá trị pháp lý khác đề nghị gỡ bỏ, hoặc nếu Nội Dung đó là đáng lên án theo cách khác. Chúng tôi cũng có thể chặn đường gửi một nội dung liên lạc (bao gồm nhưng không giới hạn cập nhật trạng thái, bài đăng, tin nhắn và/hoặc chat) đến hoặc từ Các Dịch Vụ như một phần trong nỗ lực của chúng tôi để bảo vệ Các Dịch Vụ hoặc người dùng của chúng tôi, hoặc nếu không thì là thực thi các điều khoản trong các Điều Khoản và Điều Kiện này. Bạn đồng ý rằng bạn phải tự đánh giá được và chịu mọi rủi ro liên quan đến việc sử dụng bất kỳ Nội Dung nào, bao gồm cả độ tin cậy vào tính chính xác, tính đầy đủ, hay tính hữu ích của Nội Dung đó. Về mặt này, bạn xác nhận rằng bạn không được dựa vào bất kỳ Nội Dung nào tạo bởi Chúng tôi hoặc được gửi cho Chúng tôi, bao gồm, nhưng không giới hạn thông tin trong các Diễn Đàn Chúng tôi và trong bất kỳ phần nào khác của Trang Web.</li>
                                             <li>Bạn xác nhận và đồng ý rằng Chúng tôi có thể truy cập, bảo lưu và tiết lộ thông tin tài khoản của bạn và Nội Dung của bạn nếu luật quy định điều đó hoặc tuân theo lệnh của tòa hoặc theo yêu cầu của bất kỳ cơ quan chính phủ hay cơ quan quản lý nào có thẩm quyền đối với Chúng tôi hoặc vì thiện chí cho rằng sự bảo lưu truy cập hay tiết lộ đó là cần thiết một cách hợp lý để: (a) tuân thủ quy trình pháp lý; (b) thực thi các Điều Khoản Dịch Vụ này; (c) phản hồi một đơn khiếu kiện cho rằng Nội Dung vi phạm quyền của các bên thứ ba; (d) phản hồi yêu cầu của bạn đối với dịch vụ chăm sóc khách hàng; hoặc (e) bảo vệ quyền lợi, tài sản hoặc sự an toàn cá nhân của Chúng tôi, người dùng của của Chúng tôi và/hoặc công chúng.</li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 902ba80a3351f53e4f535952fb6edc957edd4fba
                                         </ol>
                                     </div>
                                     <div class="row" id="violate">

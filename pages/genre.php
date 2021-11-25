@@ -18,6 +18,7 @@
 
     <body onmouseover="TermsPanCheck()" onload="Sidebar(); UserButtons();" onresize="Sidebar()" id="index_body">
         <!--Connect to mySQL database-->
+        <?php chdir($_SERVER["DOCUMENT_ROOT"] . "/") ?>
         <?php include "php/php_functions.php"; 
             $conn = ConnectDB();
         ?>
@@ -137,7 +138,7 @@
                                     <div class="col-3" style="text-align: right">
                                         <img src="resources/Homepage/main_nav/others/home_icon.png" alt="Home Icon" style="width: 60%; height: 100%;">
                                     </div>
-                                    <div class="col-9"><a href="#"><b>Trang chủ</b></a></div>
+                                    <div class="col-9"><a href=""><b>Trang chủ</b></a></div>
                                 </div>
                                 <div class="row align-items-center" id="other_pages">
                                     <a href="#"><b>Hướng dẫn</b></a>
@@ -210,35 +211,17 @@
                         </div>
                     </div>
                     <div class="row" id="main_content">
-                        <?php
-                            $foundNewGame = FindGames(1, 6);        //Get new games
-                            $foundFreeGame = FindGames(2, 6);       //Get free games
-                            $foundRecomGame = FindGames(3, 6);      //Get recommended games
-                        ?>
-                        
-                        <div class="col-12">
-                            <div class="row" id="banner">
-                                <img id="banner_js" src="resources/Homepage/banner.png">
-                            </div>
-                            <div class="row align-items-center" id="newGames">
-                                <script>
-                                    var foundNewGame = <?php echo json_encode($foundNewGame) ?>;
-                                    DisplayGames("newGames", foundNewGame);
-                                </script>
-                            </div>
-                            <div class="row align-items-center" id="freeGames">
-                                <script>
-                                    var foundFreeGame = <?php echo json_encode($foundFreeGame) ?>;
-                                    DisplayGames("freeGames", foundFreeGame);
-                                </script>
-                            </div>
-                            <div class="row align-items-center" id="recommendedGames">
-                                <script>
-                                    var foundRecomGame = <?php echo json_encode($foundRecomGame) ?>;
-                                    DisplayGames("recommendedGames", foundRecomGame);
-                                </script>
-                            </div>
+                        <div class="col-12" id="showcase">
                         </div>
+
+                        <?php
+                            $genreNo = $_GET['gno'];
+                            $genreData = GetGenreData($genreNo);
+                        ?>
+                        <script>
+                            var genreNo = "<?php echo $genreNo ?>";
+                            DisplayGamesAsList(<?php echo $genreData ?>);
+                        </script>
                     </div>
                 </div>
             </div>

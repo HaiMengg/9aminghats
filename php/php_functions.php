@@ -246,9 +246,9 @@
         $prefArray = RemoveDupsFromArr($prefArray);
 
         //Remove empty string at start of each array
-        array_shift($prefArray);
-        array_shift($historyNameArray);
-        array_shift($historyDateArray);
+        if ($prefArray[0] === "") array_shift($prefArray);
+        if ($historyNameArray[0] === "") array_shift($historyNameArray);
+        if ($historyDateArray[0] === "") array_shift($historyDateArray);
 
         //Convert arrays into string
         $prefArray = implode("-", $prefArray);
@@ -323,5 +323,26 @@
         $gameSpec = FileProcessing($gameDir . "cauhinh.txt");
         $gameSpec = str_replace("\r\n", "<br>", $gameSpec);
         return json_encode(array("desc" => $gameDesc, "spec" => $gameSpec));
+    }
+
+    function GetGenreData($genreNo) {
+        $foundGamesImg = array();
+        $foundGamesName = array();
+        $foundGamesNum = array();
+
+        $genreName = FetchFromDB(ConnectDB(), "SELECT `Genre` FROM DB_GENRES WHERE `No.`=$genreNo")->fetch_row(); $genreName = $genreName[0];
+        $fetchedGamesNum = FetchFromDB(ConnectDB(), "SELECT `NUMCOUNTER` FROM `DB_GAMES`")->fetch_all();
+        $fetchedGames = FetchFromDB(ConnectDB(), "SELECT `NAME` FROM `DB_GAMES`")->fetch_all();
+        $fetchedGamesGenres = FetchFromDB(ConnectDB(), "SELECT `GENRE` FROM `DB_GAMES`")->fetch_all();
+
+        for ($i = 0; $i < count($fetchedGamesGenres); $i++) {
+            $genresArray = explode("-", $fetchedGamesGenres[$i][0]);
+            if (in_array($genreNo, $genresArray)) {
+                array_push($foundGamesImg, "resources/DB_GAMES/" . $fetchedGames[$i][0] . "/" . GetFileNoExtension($_SERVER['DOCUMENT_ROOT'] . "/resources/DB_GAMES/" . $fetchedGames[$i][0] . "/", "logo"));
+                array_push($foundGamesName, $fetchedGames[$i][0]);
+                array_push($foundGamesNum, $fetchedGamesNum[$i][0]);
+            }
+        }
+        return json_encode(array("gname" => $genreName, "name" => $foundGamesName, "img" => $foundGamesImg, "numcounter" => $foundGamesNum));
     }
 ?>
