@@ -7,6 +7,10 @@
         <title>Thư viện game</title>
 
         <base href="https://high-man.com/">
+        <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="resources/favicon/site.webmanifest">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="css/library_style_GH.css">
     </head>
@@ -22,7 +26,7 @@
                     </a>
                     <div id="selection-tab">
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="pages/profile.php">
                                 Thông tin cá nhân
                             </a>
                         </div>
@@ -37,7 +41,7 @@
                             </a>
                         </div>
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="pages/library.php">
                                 Thư viện game
                             </a>
                         </div>
