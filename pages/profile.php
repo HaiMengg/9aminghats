@@ -130,12 +130,15 @@
 
         <?php 
             $username = $_COOKIE['username'];
-            if (!empty($username)) $userData = GetUserData($username);
+            $userData = GetUserData($username);
         ?>
 
         <script>
-            var username = "<?php echo $username ?>";
-            if (username !== "") {
+            var username = GetCookie('username');
+            if (username === "") {
+                window.location.href = "pages/signin.php";
+            }
+            else {
                 var userData = <?php echo $userData ?>;
                 DisplaySingleData("name", username);
                 DisplaySingleData("email", userData[0]);
@@ -145,9 +148,6 @@
                 cardSerial = cardSerial.substr(1, 4) + " " + cardSerial.substr(6, 4) + " " + cardSerial.substr(12, 4) + " " + cardSerial.substr(18, 4);
                 cardSerial = cardSerial.toUpperCase();
                 DisplaySingleData("card-number", cardSerial);
-            }
-            else {
-                window.location.href = "pages/signin.php";
             }
         </script>
     </body>

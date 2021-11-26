@@ -15,6 +15,9 @@
         <link rel="stylesheet" href="css/payment_style_GH.css">
     </head>
     <body>
+        <!--Use custom JS functions-->
+        <script type="text/javascript" src="js/js_function_AK.js"></script>
+
         <main class="container-fluid">
             <div id="main">
                 <div class="row">
@@ -68,11 +71,17 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <a id="conf-btn" href="#" style="display: block; right: 21%; bottom: 19%">
+                    <a id="conf-btn" href="javascript:GetInputValue('money');" style="display: block; right: 21%; bottom: 19%">
                         Xác nhận
                     </a>
                 </div>
             </div>
         </main>
+
+        <script>
+            if (GetCookie('username') === "") {
+                window.location.href = "pages/signin.php"
+            }
+         </script>
     </body>
 </html>
