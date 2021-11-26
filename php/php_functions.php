@@ -345,4 +345,9 @@
         }
         return json_encode(array("gname" => $genreName, "name" => $foundGamesName, "img" => $foundGamesImg, "numcounter" => $foundGamesNum));
     }
+
+    function GetUserData($username) {
+        $userData = FetchFromDB(ConnectDB(), "SELECT `EMAIL`, `WALLET`, `TOKEN` FROM `DB_USER` WHERE `USERNAME`='$username'")->fetch_row();
+        return json_encode($userData);
+    }
 ?>

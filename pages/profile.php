@@ -6,15 +6,26 @@
 
         <title>Thông tin cá nhân</title>
 
+        <base href="https://high-man.com">
+        <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="resources/favicon/site.webmanifest">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/Profile_style_GH.css">
+        <link rel="stylesheet" href="css/Profile_style_GH.css">
     </head>
     <body>
+        <!--Connect to DB and use pHp functions-->
+        <?php chdir($_SERVER['DOCUMENT_ROOT'] . "/"); ?>
+        <?php include "php/php_functions.php"; ?>
+        <!--Use custom JS functions-->
+        <script type="text/javascript" src="js/js_function_AK.js"></script>
+      
         <main class="container-fluid">
             <div class="row" id="main">
                 <div class="col-sm-4" id="left-panel">
                     <a href="#">
-                        <img src="../resources/Library/logo.png" width="90%">
+                        <img src="resources/Library/logo.png" width="90%">
                     </a>
                     <div id="selection-tab">
                         <div class="tab">
@@ -33,7 +44,7 @@
                             </a>
                         </div>
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="">
                                 Thư viện game
                             </a>
                         </div>
@@ -54,7 +65,7 @@
                         <div class="row basic-info">
                             <div class="col-sm-5" id="username">
                                 <div id="avt">
-                                    <img src="../resources/Profile/userAVT/avt-placeholder.png" width="100%">
+                                    <img src="resources/Profile/userAVT/avt-placeholder.png" width="100%">
                                 </div>
                                 <div id="name">
                                     <p>USERNAME</p>
@@ -65,10 +76,7 @@
                                     <p id="email">example@something.com</p>
                                 </div>
                                 <div class="info">
-                                    <p id="phone">Số điện thoại</p>
-                                </div>
-                                <div class="info">
-                                    <p id="nationality">Quốc tịch</p>
+                                    <p id="nationality">Quốc tịch: Việt Nam</p>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +90,7 @@
                                 </div>
                                 <div class="row" id="card-name">
                                     <div class="col-sm-2" id="card-logo">
-                                        <img src="../resources/Profile/card-logo.png" width="100%">
+                                        <img src="resources/Profile/card-logo.png" width="100%">
                                     </div>
                                     <div class="col-sm-10" id="card-rank">
                                         <span>
@@ -90,8 +98,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="row" id="card-number">
-                                    <span>
+                                <div class="row" >
+                                    <span id="card-number">
                                         XXXX XXXX XXXX XXXX
                                     </span>
                                 </div>
@@ -110,8 +118,8 @@
                                 <div class="row" id="heading">
                                     <span>Số dư:</span>
                                 </div>
-                                <div class="row" id="balance">
-                                    <span>1000000000</span>
+                                <div class="row">
+                                    <span id="balance">1000000000</span>
                                 </div>
                             </div>
                         </div>
@@ -119,5 +127,27 @@
                 </div>
             </div>
         </main>
+        <?php 
+            $username = $_COOKIE['username'];
+            if (!empty($username)) $userData = GetUserData($username);
+        ?>
+
+        <script>
+            var username = "<?php echo $username ?>";
+            if (username !== "") {
+                var userData = <?php echo $userData ?>;
+                DisplaySingleData("name", username);
+                DisplaySingleData("email", userData[0]);
+                DisplaySingleData("balance", userData[1]);
+                var cardSerial = userData[2];
+                cardSerial = cardSerial.replace(/[^a-zA-Z0-9]/g, "");
+                cardSerial = cardSerial.substr(1, 4) + " " + cardSerial.substr(6, 4) + " " + cardSerial.substr(12, 4) + " " + cardSerial.substr(18, 4);
+                cardSerial = cardSerial.toUpperCase();
+                DisplaySingleData("card-number", cardSerial);
+            }
+            else {
+                window.location.href = "pages/signin.php";
+            }
+        </script>
     </body>
 </html>
