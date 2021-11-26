@@ -1,0 +1,81 @@
+@font-face {
+    font-family: BreeSerif;
+    src: url(../resources/fonts/cnttqn.net_BreeSerif.otf);
+}
+body
+{
+    background: url(../resources/cart/back.svg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+     background-size: cover;
+    color: white;
+    font-family: BreeSerif;
+    padding: 0;
+    font-size: medium;
+}
+#main
+{
+    border-radius: 33px;
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+    padding: 5vh 10vw 5vh 10vw;
+}
+.row_content
+{
+    background-color: #1C1656;
+    width: 80vw;
+    height: 90vh;
+    border-radius: 33px;
+    padding: 2vw 2vh 2vw 2vh;
+}
+.content{
+    background-color: #1E175C;
+    border-radius: 33px;
+    padding: 2%;
+}
+.row_data
+{
+    width: 70%;
+    height: 55vh;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 1% 2% 0% 2%;
+}
+.header_table
+{
+    padding: 0% 2% 0% 2%;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom: 2px solid white;
+    background-color: #AC95FC;
+}
+.footer_table
+{
+    padding: 0% 2% 0% 2%;
+    border-radius: 0px 0px 15px 15px;
+    border-top: 2px solid white;
+    background-color: #AC95FC;
+}
+.data{
+    background-color: #AC95FC;
+    height: 45vh;
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.button
+{
+    margin-left: 85%;
+    width: 15%;
+    height: 8%;
+}
+.button button
+{
+    background: rgb(174,18,252);
+    background: linear-gradient(90deg, rgba(174,18,252,1) 0%, rgba(107,66,252,1) 100%);
+    color: white;
+    border-radius: 30px;
+    border-color: transparent;
+    width: 100%;
+}
