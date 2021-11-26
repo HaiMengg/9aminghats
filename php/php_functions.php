@@ -347,7 +347,17 @@
     }
 
     function GetUserData($username) {
-        $userData = FetchFromDB(ConnectDB(), "SELECT `EMAIL`, `WALLET`, `TOKEN` FROM `DB_USER` WHERE `USERNAME`='$username'")->fetch_row();
-        return json_encode($userData);
+        if (!empty($username)) {
+            $userData = FetchFromDB(ConnectDB(), "SELECT `EMAIL`, `WALLET`, `TOKEN` FROM `DB_USER` WHERE `USERNAME`='$username'")->fetch_row();
+            return json_encode($userData);
+        }
+        else return json_encode(array());
+    }
+    
+    function UpdateUserWallet($username, $money) {
+        $oldWallet = FetchFromDB(ConnectDB(), "SELECT `WALLET` FROM DB_USER WHERE `USERNAME`='$username'")->fetch_row(); $oldWallet = $oldWallet[0];
+
+        $newWallet = $oldWallet + $money;
+        ConnectDB()->query("UPDATE `DB_USER` SET `WALLET`=$newWallet WHERE `USERNAME`='$username'");
     }
 ?>

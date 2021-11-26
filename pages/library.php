@@ -36,7 +36,7 @@
                             </a>
                         </div>
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="pages/chargeup.php">
                                 Nạp tiền
                             </a>
                         </div>
@@ -111,5 +111,11 @@
                 </div>
             </div>
         </main>
+
+        <script>
+            if (GetCookie('username') === "") {
+                window.location.href = "pages/signin.php"
+            }
+         </script>
     </body>
 </html>

@@ -594,3 +594,21 @@ function DisplayGamesAsList(genreData) {
         }
     }
 }
+
+function GetInputValue(inputID) {
+    var input = document.getElementById(inputID).values;
+
+    var formData = new FormData();
+    formData.append("user", GetCookie('username'));
+    formData.append("money", input);
+    $.ajax({
+        url: 'php/account_process.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(){
+                alert("Success");
+            }
+    })
+}
