@@ -360,4 +360,9 @@
         $newWallet = $oldWallet + $money;
         ConnectDB()->query("UPDATE `DB_USER` SET `WALLET`=$newWallet WHERE `USERNAME`='$username'");
     }
+    $userUUW = $_POST['user'];
+    $moneyUUW = $_POST['money'];
+    if (!empty($userUUW) && !empty($moneyUUW)) {
+        UpdateUserWallet($userUUW, $moneyUUW);
+    }
 ?>

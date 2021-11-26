@@ -596,19 +596,31 @@ function DisplayGamesAsList(genreData) {
 }
 
 function GetInputValue(inputID) {
-    var input = document.getElementById(inputID).values;
+    var input = document.getElementById(inputID).value;
 
-    var formData = new FormData();
-    formData.append("user", GetCookie('username'));
-    formData.append("money", input);
-    $.ajax({
-        url: 'php/account_process.php',
-            data: formData,
-            processData: false,
-            contentType: false,
-            type: 'POST',
-            success: function(){
-                alert("Success");
-            }
-    })
+    var allowed = true;
+    if (input < 50000) {
+        alert("Giá trị nạp phải ít nhất là 50.000 đồng");
+        allowed = false;
+    }
+    if (allowed) {
+        var formData = new FormData();
+        formData.append("user", GetCookie('username'));
+        formData.append("money", input);
+        $.ajax({
+            url: 'php/account_process.php',
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function(){
+                    var main = document.getElementById("main");
+                    main.innerHTML = "<p style='color: green; text-align: center; font-size: 30px'>Đã nạp " + input + " đồng vào tài khoản</p>";
+                    main.style = "padding-top: 8vh;"
+                    setTimeout(function() {
+                        window.location.href = "pages/profile.php";
+                    }, 1500)
+                }
+        })
+    }
 }
