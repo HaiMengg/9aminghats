@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/term_MH.css">
     </head>
 
-    <body onmouseover="TermsPanCheck()" onload="Sidebar(); UserButtons();" onresize="Sidebar()" id="index_body">
+    <body onmouseover="TermsPanCheck()" onload="Sidebar(); UserButtons();" onresize="Sidebar()">
         <!--Connect to mySQL database-->
         <?php chdir($_SERVER["DOCUMENT_ROOT"] . "/") ?>
         <?php include "php/php_functions.php"; 
