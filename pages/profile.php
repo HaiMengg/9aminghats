@@ -29,7 +29,7 @@
                     </a>
                     <div id="selection-tab">
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="pages/profile.php">
                                 Thông tin cá nhân
                             </a>
                         </div>
@@ -39,12 +39,12 @@
                             </a>
                         </div>
                         <div class="tab">
-                            <a class="select" href="#">
+                            <a class="select" href="pages/chargeup.php">
                                 Nạp tiền
                             </a>
                         </div>
                         <div class="tab">
-                            <a class="select" href="">
+                            <a class="select" href="pages/library.php">
                                 Thư viện game
                             </a>
                         </div>
