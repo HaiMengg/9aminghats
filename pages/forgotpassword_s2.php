@@ -3,18 +3,12 @@
     include "php/php_functions.php";
     ConnectDB()->set_charset("utf8mb4");
     $email = $_GET['email'];
-    $user = $_GET['user'];
     if (!empty($email)) {
 
         $newPwd = $_GET['newPwd'];      //Get new password from HTML form's value
         $newPwdHashed = password_hash($newPwd, PASSWORD_DEFAULT);
 
-        if (!empty($user)) {
-            $getData = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='" . $email . "' AND `USERNAME`='" . $user . "'");
-        }
-        else if (empty($user)) {
-            $getData = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='" . $email . "'");
-        }
+        $getData = FetchFromDB(ConnectDB(), "SELECT * FROM DB_USER WHERE `EMAIL`='" . $email . "'");
 
         if ($getData->num_rows == 1) {
             $includeUser = "";

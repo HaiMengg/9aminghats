@@ -13,57 +13,24 @@
         <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="css/payment_style_GH.css">
-
-        <script src="js/payment_GH.js" defer></script>
     </head>
     <body>
+        <!--Use custom JS functions-->
+        <script type="text/javascript" src="js/js_function_AK.js"></script>
+
         <main class="container-fluid">
             <div id="main">
                 <div class="row">
-                    <a id="arrow" href="">
+                    <a id="arrow" href="pages/profile.php">
                         <img src="resources/Payment/arrow.png">
                     </a>
                 </div>
                 <div class="row" id="payment-heading">
                     <h1 style="font-size: 50px;">
-                        Xác nhận thanh toán
+                        Nạp tiền vào ví điện tử
                     </h1>
                 </div>
-                <div class="row" id="payment-chose">
-                    <div class="col-sm-6" id="give-choice">
-                        <p>Phương thức thanh toán:</p>
-                    </div>
-                    <div class="col-sm-6" id="dropdown-choice">
-                        <div class="row" id="choose-btn">
-                            <div class="col-sm-6">
-                                <div id="choose-method" onclick="dropMethods()">--Chọn phương thức--</div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div id="arrow-down" onclick="dropMethods()">
-                                    <i id="dropdown"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="choice-list" id="methods">
-                            <div class="choice" id="wallet" onclick="chooseWallet()">Ví điện tử</div>
-                            <div class="choice" id="card" onclick="chooseCard()">Thẻ ngân hàng</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row information" id="wallet-info">
-                    <div id="w-main-info">
-                        <div class="info">
-                            Tài khoản hiện có: 1.000.000
-                        </div>
-                        <div class="info">
-                            Giá game: 500.000
-                        </div>
-                        <div class="info">
-                            Số dư: 500.000
-                        </div>
-                    </div>
-                </div>
-                <div class="row information" id="card-info">
+                <div class="row information" id="card-info" style="display: block">
                     <div class="row" id="c-main-info">
                         <div class="col-sm-6 input" id="left-info">
                             <div class="row">
@@ -81,7 +48,7 @@
                                     <input class="value" id="expire" type="text" maxlength="5" placeholder="MM/YY">
                                 </div>
                                 <div id="credit-amount">
-                                    <p class="instruct"><strong>Số tiền giao dịch</strong></p>
+                                    <p class="instruct"><strong>Số tiền muốn nạp</strong></p>
                                     <input class="value" id="money" type="number">
                                 </div>
                             </div>
@@ -104,11 +71,17 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <a id="conf-btn" href="#">
+                    <a id="conf-btn" href="javascript:GetInputValue('money');" style="display: block; right: 21%; bottom: 19%">
                         Xác nhận
                     </a>
                 </div>
             </div>
         </main>
+
+        <script>
+            if (GetCookie('username') === "") {
+                window.location.href = "pages/signin.php"
+            }
+         </script>
     </body>
 </html>

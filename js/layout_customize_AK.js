@@ -9,7 +9,7 @@ function Sidebar() {
     var searchDiv = document.getElementById("search");
     var sidebar_mobile = document.getElementById("sidebar_mobile");
     var topbar_mobile = document.getElementById("topbar_mobile");
-    var banner = document.getElementById("banner_js");
+    if (document.body.id == "index_body") var banner = document.getElementById("banner_js");
 
     if (screenWidth <= 2144 && screenWidth >= 1760) {
         sidebar.setAttribute("class", "col-3");

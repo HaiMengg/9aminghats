@@ -3,25 +3,25 @@
      <head>
         <title>Giỏ hàng | 9amingHats</title>
         <meta charset="utf-8">
-        <!-- <base href="https://high-man.com/"> -->
+        <base href="https://high-man.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" sizes="180x180" href="../resources/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../resources/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../resources/favicon/favicon-16x16.png">
-        <link rel="manifest" href="../resources/favicon/site.webmanifest">
-        <link rel="stylesheet" href="..\resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="resources/favicon/site.webmanifest">
+        <link rel="stylesheet" href="resources\plugins\bootstrap\bootstrap-5.1.3-dist\css\bootstrap.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-        <script src="..\resources\plugins\jQuery\jquery-3.6.0.js"></script>
-        <script src="..\resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
-        <link rel="stylesheet" href="../css/cart_MH.css">
+        <script src="resources\plugins\jQuery\jquery-3.6.0.js"></script>
+        <script src="resources\plugins\bootstrap\bootstrap-5.1.3-dist\js\bootstrap.js"></script>
+        <link rel="stylesheet" href="css/cart_MH.css">
     </head>
     <body>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 justify-content-center" id="main">
             <div class="row row_content">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content">
                     <div class="row">
-                        <a href="https://www.youtube.com/watch?v=b41yyHH6Cic">
-                            <img src="../resources/Payment/arrow.png">
+                        <a href="">
+                            <img src="resources/Payment/arrow.png">
                         </a>
                     </div>  
                     <div class="row text-center">

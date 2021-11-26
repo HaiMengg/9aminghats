@@ -359,15 +359,15 @@ function ProcessRegisterInfo() {
     }
 }
 
-function ProcessPassword() {
+function ProcessPasswordResetEmail() {
     var data = $("#password_form").serializeArray();
     var email = Object.values(data[0]);      //Output: Array = ["email", ""]
-    var username = Object.values(data[1] || ""); 
     var passwordNotif = document.getElementById("password_notif");
     var allowed = true;
 
+    
     if (email[1].includes("@") !== true || email[1].includes(".") !== true) {
-        passwordNotif.innerHTML += "* Email được nhập vào không đúng định dạng<br>";
+        passwordNotif.innerHTML = "* Email được nhập vào không đúng định dạng<br>";
         passwordNotif.style = "color: red; display: block";
         allowed = false;
     }
@@ -375,8 +375,6 @@ function ProcessPassword() {
         var formData = new FormData();
         formData.append("mode", "resetPass");
         formData.append("emailResetPass", email[1]);
-        if (username[1] !== undefined) formData.append("userResetPass", username[1]);
-        else formData.append("userResetPass", "");
 
         $.ajax({
             url: 'php/account_process.php',
@@ -391,20 +389,81 @@ function ProcessPassword() {
                     case 1:
                         passwordNotif.innerHTML = "* Một email thiết lập lại mật khẩu cho tài khoản với địa chỉ email " + email[1] + " đã được gửi đi. Bạn vui lòng kiểm tra mail";
                         passwordNotif.style = "color: green; display: block";
-                        var passwordResetForm = document.getElementById("passwordreset_form");
-                        passwordNotif.style = "display: none";
+                        var passwordResetForm = document.getElementById("password_form");
+                        passwordResetForm.style = "display: none";
                         break;
                     case 2:
-                        if (username[1] !== undefined) {
-                            passwordNotif.innerHTML = "* Tài khoản với email " + email[1] + " và tên đăng nhập " + username[1] + " không tồn tại. Bạn vui lòng check lại thông tin";
-                        }
-                        else passwordNotif.innerHTML = "* Tài khoản với email " + email[1] + " không tồn tại. Bạn vui lòng check lại thông tin";
+                        passwordNotif.innerHTML = "* Tài khoản với email " + email[1] + " không tồn tại. Bạn vui lòng check lại thông tin";
                         passwordNotif.style = "color: red; display: block";
                         break;
                 }
             }
         })
     }
+}
+function ProcessPasswordResetPwd() {
+    var data = $("#passwordS2_form").serializeArray();
+    var pwdS2 = Object.values(data[0]);      //Output: Array = ["password", ""]
+    var pwdS2Recon = Object.values(data[1]);  //Output: Array = ["password_reconfirm", ""]
+    var emailS2 = GetURLParams(window.location.search, "email");
+    var tokenS2 = GetURLParams(window.location.search, "token");
+    var passwordS2Notif = document.getElementById("passwordS2_notif");
+    var allowed = true;
+
+    passwordS2Notif.innerHTML = "";
+    if (emailS2 === "" || tokenS2 === "") {
+        passwordS2Notif.innerHTML += "* Không thể xác thực thông tin của người đang điền form. Lỗi :<";
+        passwordS2Notif.style = "color: red; display: block";
+        allowed = false;
+    }
+    if (pwdS2[1] !== pwdS2Recon[1]) {
+        passwordS2Notif.innerHTML += "* Mật khẩu và Xác nhận mật khẩu phải giống nhau";
+        passwordS2Notif.style = "color: red; display: block";
+        allowed = false;
+    }
+    if (allowed === true) {
+        var formData = new FormData();
+        formData.append("mode", "resetPassS2");
+        formData.append("pwdS2", pwdS2[1]);
+        formData.append("emailS2", emailS2);
+        formData.append("tokenS2", tokenS2);
+
+        $.ajax({
+            url: 'php/account_process.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(result){
+                var resultArray = JSON.parse(result);
+                var stateResetPassS2 = resultArray.stateResetPassS2;
+                switch(stateResetPassS2) {
+                    case 1:
+                        passwordS2Notif.innerHTML = "* Mật khẩu đã được thiết lập lại. Trở về trang đăng nhập";
+                        passwordS2Notif.style = "color: green; display: block";
+                        var passwordResetS2Form = document.getElementById("passwordS2_form");
+                        passwordResetS2Form.style = "display: none";
+                        setTimeout(function() {
+                            window.location.href = "pages/signin.php";
+                        }, 2000)
+                        break;
+                    case 2:
+                        passwordS2Notif.innerHTML = "* Đã xảy ra lỗi. Bạn vui lòng thử lại";
+                        passwordS2Notif.style = "color: red; display: block";
+                        break;
+                    case 3:
+                        passwordS2Notif.innerHTML = "* Không thể xác thực thông tin của người đang điền form. Lỗi :<";
+                        passwordS2Notif.style = "color: red; display: block";
+                        break;
+                }
+            }
+        })
+    }
+}
+
+function GetURLParams(url, paramValue) {
+    var urlParams = new URLSearchParams(url);
+    return urlParams.get(paramValue);;
 }
 
 function CheckLogInState(mode) {
@@ -482,8 +541,7 @@ function DisplayGamesAsList(genreData) {
 
     var genreName = genreData["gname"];
     var genreRow = document.createElement("div");
-    genreRow.setAttribute("class", "row align-items-center");
-    genreRow.setAttribute("style", "padding: 2%");
+    genreRow.setAttribute("style", "padding: 2%; border-radius: 40px; border: 15px solid #6600CC; background-image: linear-gradient(to right, #AE12FC, #6B42FC); margin-bottom: 2vh");
     genreRow.innerHTML = "<p id='genre_name'><b>" + genreName + "</b></p>";
     showcase.appendChild(genreRow);
 
@@ -491,43 +549,66 @@ function DisplayGamesAsList(genreData) {
     var gameNumArray = genreData["numcounter"];
     var gameLogoArray = genreData["img"];
 
-    var slideNum = 0;
-    var elementNumCount = 0;
-    var elementNum = gameNameArray.length;
-    //3 elements per slide
-    if (elementNum % 3 == 0) slideNum = elementNum / 3;              //If x number of elements is divisible by 3 then x elements can be equally split into (x/3) number of slides
-    //Otherwise, if x < 3 then put x elements in a single slide and leave them be, else if there are more slides than can be split
-                                                                       //into (x/3) number of slides then leave the remaining elements in the next empty slide
-    else {
-        slideNum = Math.ceil(elementNum / 3);
-    }                  
-    for (let i = 1; i <= slideNum; i++) {
-        var row = document.createElement("div");
-        row.setAttribute("class", "row align-items-center");
-        row.setAttribute("style", "padding: 2%");
-
-        for (let x = 1; x <= 3; x++) {                          //Repeatedly creates different elements of the same slide
-            if (elementNumCount < elementNum) {
-                var element = document.createElement("div");
-                element.setAttribute("class", "col-4 text-center");
-                element.setAttribute("style", "padding: 1%");
-    
-                var elementRow1 = document.createElement("div");
-                var elementRow2 = document.createElement("div");
-    
-                var elementContent = document.createElement("img");           //The images are still unstable so LATER
-                elementContent.src = gameLogoArray[elementNumCount];
-                elementContent.id = "gameLogo";
-                elementContent.setAttribute("onclick", "DataToPHP('" + gameNameArray[elementNumCount] + "', '" + gameNumArray[elementNumCount] + "')");
-                row.appendChild(element).appendChild(elementRow1).appendChild(elementContent);
-    
-                var elementName = document.createElement("p");
-                elementName.innerText = gameNameArray[elementNumCount];
-                row.appendChild(element).appendChild(elementRow2).appendChild(elementName);
-    
-                elementNumCount++;
-            }
-        }
-        showcase.appendChild(row);
+    if (gameNameArray.length === 0) {
+        showcase.innerHTML += "<p style='text-align:center; font-size:30px'>Không có dữ liệu game liên quan đến thể loại này để hiển thị</p>";
     }
+    else {
+        var slideNum = 0;
+        var elementNumCount = 0;
+        var elementNum = gameNameArray.length;
+        //3 elements per slide
+        if (elementNum % 3 == 0) slideNum = elementNum / 3;              //If x number of elements is divisible by 3 then x elements can be equally split into (x/3) number of slides
+        //Otherwise, if x < 3 then put x elements in a single slide and leave them be, else if there are more slides than can be split
+                                                                           //into (x/3) number of slides then leave the remaining elements in the next empty slide
+        else {
+            slideNum = Math.ceil(elementNum / 3);
+        }                  
+        for (let i = 1; i <= slideNum; i++) {
+            var row = document.createElement("div");
+            row.setAttribute("class", "row align-items-center");
+            row.setAttribute("style", "padding: 2%");
+    
+            for (let x = 1; x <= 3; x++) {                          //Repeatedly creates different elements of the same slide
+                if (elementNumCount < elementNum) {
+                    var element = document.createElement("div");
+                    element.setAttribute("class", "col-4 text-center");
+                    element.setAttribute("style", "padding: 1%");
+        
+                    var elementRow1 = document.createElement("div");
+                    var elementRow2 = document.createElement("div");
+        
+                    var elementContent = document.createElement("img");           //The images are still unstable so LATER
+                    elementContent.src = gameLogoArray[elementNumCount];
+                    elementContent.id = "gameLogo";
+                    elementContent.setAttribute("onclick", "DataToPHP('" + gameNameArray[elementNumCount] + "', '" + gameNumArray[elementNumCount] + "')");
+                    row.appendChild(element).appendChild(elementRow1).appendChild(elementContent);
+        
+                    var elementName = document.createElement("p");
+                    elementName.innerText = gameNameArray[elementNumCount];
+                    row.appendChild(element).appendChild(elementRow2).appendChild(elementName);
+        
+                    elementNumCount++;
+                }
+            }
+            showcase.appendChild(row);
+        }
+    }
+}
+
+function GetInputValue(inputID) {
+    var input = document.getElementById(inputID).values;
+
+    var formData = new FormData();
+    formData.append("user", GetCookie('username'));
+    formData.append("money", input);
+    $.ajax({
+        url: 'php/account_process.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            type: 'POST',
+            success: function(){
+                alert("Success");
+            }
+    })
 }
