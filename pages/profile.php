@@ -20,7 +20,7 @@
         <?php include "php/php_functions.php"; ?>
         <!--Use custom JS functions-->
         <script type="text/javascript" src="js/js_function_AK.js"></script>
-
+      
         <main class="container-fluid">
             <div class="row" id="main">
                 <div class="col-sm-4" id="left-panel">
@@ -127,7 +127,6 @@
                 </div>
             </div>
         </main>
-
         <?php 
             $username = $_COOKIE['username'];
             $userData = GetUserData($username);
